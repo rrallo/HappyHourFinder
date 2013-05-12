@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Restaurant.delete_all
+
+[["South Beach Bar & Grill", "Ocean Beach", 3]].each do |n,l,r|
+	Restaurant.find_or_create_by_name name: n, location: l, rating: r
+end
