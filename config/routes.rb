@@ -1,3 +1,7 @@
 Happy::Application.routes.draw do
-  root :to => "home#index"
+  get "restaurants/show"
+
+	resources :restaurants
+  	root :to => redirect("/restaurants")
+
 end

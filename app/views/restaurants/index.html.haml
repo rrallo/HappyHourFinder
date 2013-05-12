@@ -1,0 +1,5 @@
+-@restaurants.each do | r |
+	%p
+		= link_to "#{r.name}", restaurant_path(r)
+		\-
+		= r.location
