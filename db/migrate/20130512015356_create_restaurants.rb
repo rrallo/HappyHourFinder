@@ -5,6 +5,7 @@ class CreateRestaurants < ActiveRecord::Migration
   		r.string :location
   		r.references :photos
   		r.integer :rating
+      r.string :yelp_id
   	end
   end
 

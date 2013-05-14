@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130512015356) do
     t.string  "location"
     t.integer "photos_id"
     t.integer "rating"
+    t.string  "yelp_id"
   end
 
 end

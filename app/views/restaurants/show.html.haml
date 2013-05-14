@@ -1,5 +1,9 @@
 %h1= @restaurant.name
-%h2= @restaurant.location
+%h2= @yelp["location"]["city"]
+%p= @yelp["location"]["display_address"].join(",")
 %p
-	rating: 
-	= @restaurant.rating
+	Rating:
+	= @yelp["rating"]
+	\/ 5.0
+
+
