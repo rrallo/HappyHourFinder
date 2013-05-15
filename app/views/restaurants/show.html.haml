@@ -1,9 +1,11 @@
 %h1= @restaurant.name
+%div.left 
+	= image_tag(@yelp["image_url"])
 %h2= @yelp["location"]["city"]
 %p= @yelp["location"]["display_address"].join(",")
-%p
-	Rating:
-	= @yelp["rating"]
-	\/ 5.0
+%p Rating: #{@yelp["rating"]} / 5.0
+
+
+
 
 
