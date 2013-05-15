@@ -3,8 +3,6 @@
 		= link_to "#{r.name}", restaurant_path(r)
 		\-
 		= r.location
-	%p
-		= link_to "Log in with Facebook", "/auth/facebook"
 
 	-if user_signed_in?
 		= "Hi, #{current_user.email}"
