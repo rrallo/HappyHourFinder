@@ -13,7 +13,7 @@ group :assets do
 end
 gem 'jquery-rails'
 group :test do
-  gem 'turn', :require => false
+  gem 'turn', '< 0.8.3'
 end
 gem "haml", ">= 3.1.6"
 gem "haml-rails", ">= 0.3.4", :group => :development
