@@ -8,6 +8,7 @@
 
 Restaurant.delete_all
 
-[["South Beach Bar & Grill", "Ocean Beach", 3, "south-beach-bar-and-grille-san-diego"]].each do |n,l,r, y|
+[["South Beach Bar & Grill", "Ocean Beach", 3, "south-beach-bar-and-grille-san-diego"],
+ ["Blue Water Seafood", "San Diego", 2, "blue-water-seafood-market-and-grill-san-diego"]].each do |n,l,r, y|
 	Restaurant.find_or_create_by_name name: n, location: l, rating: r, yelp_id: y
 end
