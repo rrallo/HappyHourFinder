@@ -1,6 +1,10 @@
 Happy
 =============
 
+## Check Continuous Integration Status for your latest push here:
+[ ![Codeship Status for rrallo/to-be-renamed](https://www.codeship.io/projects/8d3418e0-9fc2-0130-c3c8-46c82cd544cc/status?branch=master)](https://www.codeship.io/projects/3473)
+
+
 ## Installation
 Create a new rails server
 

@@ -1,4 +1,7 @@
 Happy::Application.configure do
+  FB_AUTH_ID = '545979715453723'
+  FB_AUTH_SECRET = '4ed416386eb838496f2526d4e62a3917'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
