@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512015356) do
+ActiveRecord::Schema.define(:version => 20130515003529) do
+
+  create_table "ratings", :force => true do |t|
+    t.integer "rating"
+    t.integer "user_id"
+    t.integer "restaurant_id"
+  end
 
   create_table "restaurants", :force => true do |t|
     t.string  "name"
@@ -19,6 +25,11 @@ ActiveRecord::Schema.define(:version => 20130512015356) do
     t.integer "photos_id"
     t.integer "rating"
     t.string  "yelp_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string "name"
+    t.string "location"
   end
 
 end
