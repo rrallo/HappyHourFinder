@@ -6,7 +6,9 @@ Happy::Application.routes.draw do
 
   get "restaurants/show"
 
-	resources :restaurants
+	resources :restaurants 
+  resources :ratings
+
 	root :to => redirect("/restaurants")
 	match '/auth/:provider/callback' => 'authentications#create'
 

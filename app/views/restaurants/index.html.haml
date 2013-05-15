@@ -1,12 +1,13 @@
+-if user_signed_in?
+	= "Hi, #{current_user.email}"
+	%br/
+	= link_to 'Logout', destroy_user_session_path, :method => :delete
+-else
+	= link_to 'Login with Facebook', '/auth/facebook/'
+
 -@restaurants.each do | r |
 	%p
 		= link_to "#{r.name}", restaurant_path(r)
 		\-
 		= r.location
 
-	-if user_signed_in?
-		= "Hi, #{current_user.email}"
-		%br/
-		= link_to 'Logout', destroy_user_session_path, :method => :delete
-	-else
-		= link_to 'Login with Facebook', '/auth/facebook/'
