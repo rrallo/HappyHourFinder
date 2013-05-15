@@ -1,4 +1,7 @@
 Happy::Application.configure do
+  ID = '545979715453723'
+  SECRET = '4ed416386eb838496f2526d4e62a3917'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

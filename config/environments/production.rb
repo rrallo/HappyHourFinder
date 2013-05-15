@@ -1,4 +1,7 @@
 Happy::Application.configure do
+  ID = '142423825944639'
+  SECRET = '1dc8170c3e2fea65c479ec58b0beb870'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
