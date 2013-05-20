@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :delete_all
 
   def update_fields(auth)
-    self.id           = auth['extra']['raw_info']['id']
+    self.uid           = auth['uid']
     self.name         = auth['extra']['raw_info']['name']
     self.first_name   = auth['extra']['raw_info']['first_name']
     self.last_name    = auth['extra']['raw_info']['last_name']
