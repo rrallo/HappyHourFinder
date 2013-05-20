@@ -3,7 +3,12 @@ require 'oauth'
 
 class RestaurantsController < ApplicationController
 	def index
-	  	@restaurants = Restaurant.all
+    if params[:search]
+      @restaurant_results = Restaurant.search(params[:search])
+      params[:search] = nil
+    end
+
+    @restaurants = Restaurant.all
 	end
 
 	def show
@@ -23,5 +28,5 @@ class RestaurantsController < ApplicationController
 
 		p = access_token.get(path).body
 		@yelp = ActiveSupport::JSON.decode(p)
-	end
+  end
 end

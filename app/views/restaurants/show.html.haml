@@ -1,5 +1,5 @@
 %h1= @restaurant.name
-%div.left 
+%div.left
   = image_tag(@yelp["image_url"])
 %h2= @yelp["location"]["city"]
 %p= @yelp["location"]["display_address"].join(",")
@@ -29,3 +29,7 @@
 -else
   = link_to "Please log in to rate this restaurant's happy hour.", '/auth/facebook/'
 
+%p Search by restaurant name or id:
+= form_tag restaurants_path, :method => 'get' do
+  = text_field_tag :search, params[:search], :id => 'search_field'
+  = submit_tag "Search", :name => nil
