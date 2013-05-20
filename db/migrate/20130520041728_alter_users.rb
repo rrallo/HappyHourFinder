@@ -14,6 +14,7 @@ class AlterUsers < ActiveRecord::Migration
   end
 
   def down
-    drop_table :users
+    remove_column :uid, :first_name, :last_name, :link, :username, :gender,
+                  :timezone, :locale, :updated_time
   end
 end
