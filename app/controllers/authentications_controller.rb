@@ -8,11 +8,15 @@ class AuthenticationsController < ApplicationController
     if authentication
       # Authentication found, sign the user in.
       flash[:notice] = "Signed in successfully."
+
+      # Update information.
+      authentication.user.update_fields(auth)
+
       sign_in_and_redirect(:user, authentication.user)
     else
       # Authentication not found, thus a new user.
       user = User.new
-      user.apply_omniauth(auth)
+      user.update_fields(auth)
       if user.save(:validate => false)
         flash[:notice] = "Account created and signed in successfully."
         sign_in_and_redirect(:user, user)
