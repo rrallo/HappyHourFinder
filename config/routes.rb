@@ -1,4 +1,6 @@
 Happy::Application.routes.draw do
+  resources :categories
+
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
