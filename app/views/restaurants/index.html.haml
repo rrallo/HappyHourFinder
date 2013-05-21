@@ -23,6 +23,5 @@
 				.span6
 					%h1.restaurant-title
 						= link_to "#{r.name}", restaurant_path(r)
-					%p= r.location
 					.restaurant-tile-img
 						= image_tag(@list[r.name])

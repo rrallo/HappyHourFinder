@@ -1,18 +1,17 @@
 %div.header-img
   = image_tag(@header_img)
 
+
 .row-fluid
-  .span6.offset3
+  .span8.offset1.content
     %h1= @restaurant.name
-    %h2= @yelp["location"]["city"]
     %p= @yelp["location"]["display_address"].join(",")
     %p Rating: #{@yelp["rating"]} / 5.0
-    %p 
-      Reviews:
-      %ul
-        -@yelp["reviews"].each do |review|
-          %li
-            #{review["excerpt"]}
+    %h2 Reviews
+    %ul
+      -@yelp["reviews"].each do |review|
+        %li
+          #{review["excerpt"]}
 
     -if user_signed_in?
       %p Happy Hour Rating:
@@ -32,7 +31,4 @@
     -else
       = link_to "Please log in to rate this restaurant's happy hour.", '/auth/facebook/'
 
-    %p Search by restaurant name or food type:
-    = form_tag restaurants_path, :method => 'get' do
-      = text_field_tag :search, params[:search], :id => 'search_field'
-      = submit_tag "Search", :name => nil
+    
