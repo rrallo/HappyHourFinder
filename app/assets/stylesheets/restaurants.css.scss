@@ -7,9 +7,34 @@
 	margin-right: 20px;
 }
 
+.restaurant-tile {
+	img {
+		width: 100%;
+	}
+
+	position: relative;
+	overflow: hidden;
+}
+.restaurant-title-container {
+	background: rgba(0,0,0, .5);
+	padding: 0 10px 10px;
+
+	width: 100%;
+
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+}
+
 .restaurant-title {
-	font-size: 18px;
-	line-height: 20px;
+	margin: 0;
+
+	a {
+		font-size: 18px;
+		line-height: 20px;
+		color: #fff
+	}
+
 }
 
 .header-img {
