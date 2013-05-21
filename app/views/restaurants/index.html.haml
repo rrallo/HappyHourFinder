@@ -13,8 +13,16 @@
 			= link_to "#{r.name}", restaurant_path(r)
 			= "- #{r.location}"
 
-= "All restaurants:"
--@restaurants.each do |r|
-	%p
-		= link_to "#{r.name}", restaurant_path(r)
-		= "- #{r.location}"
+.row-fluid
+	.span6.offset3
+		.row-fluid
+			-@restaurants.each_with_index do |r, i|
+				-if i % 2 == 0 && i != 0
+					%div.row-fluid
+
+				.span6
+					%h1.restaurant-title
+						= link_to "#{r.name}", restaurant_path(r)
+					%p= r.location
+					.restaurant-tile-img
+						= image_tag(@list[r.name])
