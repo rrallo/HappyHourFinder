@@ -22,6 +22,4 @@ gem "oauth"
 gem "oauth2"
 gem "omniauth"
 gem "omniauth-facebook"
-group :assets do
-  gem 'bootstrap-sass' # must be outside assets or it will fail on heroku
-end
+gem 'bootstrap-sass' # must be outside assets or it will fail on heroku
