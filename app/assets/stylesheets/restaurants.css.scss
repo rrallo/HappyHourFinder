@@ -1,8 +1,72 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .left {
 	float: left;
 	margin-right: 20px;
+}
+
+.restaurant-grid {
+	margin-top: 10px
+}
+
+.restaurant-tile {
+	img {
+		width: 100%;
+	}
+
+	position: relative;
+	overflow: hidden;
+}
+.restaurant-title-container {
+	background: rgba(0,0,0, .55);
+	padding: 0 10px 10px;
+
+	width: 100%;
+
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+}
+
+.restaurant-title {
+	margin: 0;
+	font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+
+	a {
+		font-size: 18px;
+		line-height: 20px;
+		color: #f0f0f0;
+	}
+
+}
+
+.header-img {
+	margin: 0 -16px;
+	-webkit-box-shadow: 0 0 2px rgb(0,0,0);
+	-moz-box-shadow: 0 0 2px rgb(0,0,0);
+	box-shadow: 0 0 2px rgb(0,0,0);
+
+	img {
+		position: relative;
+		top: -50%;
+	}
+}
+
+.content {
+	-webkit-box-shadow: 0 0 2px rgba(0,0,0, .5);
+	-moz-box-shadow: 0 0 2px rgba(0,0,0, .5);
+	box-shadow: 0 0 2px rgba(0,0,0, .5);
+	border-radius: 3px;
+
+	background: #fff;
+	
+	position: relative;
+	z-index: 10;
+	margin: -100px 0 50px;
+	padding: 20px;
+
+	h1 {
+		font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+	}
 }
