@@ -1,7 +1,6 @@
 // Place all the styles related to the Restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .left {
 	float: left;
 	margin-right: 20px;
@@ -32,6 +31,7 @@
 
 .restaurant-title {
 	margin: 0;
+	font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 
 	a {
 		font-size: 18px;
@@ -65,4 +65,8 @@
 	z-index: 10;
 	margin: -100px 0 50px;
 	padding: 20px;
+
+	h1 {
+		font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+	}
 }
