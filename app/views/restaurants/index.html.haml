@@ -1,13 +1,19 @@
--if user_signed_in?
-	= "Hi, #{current_user.email}"
+-if @restaurant_results
+	= "Search results:"
 	%br/
-	= link_to 'Logout', destroy_user_session_path, :method => :delete
--else
-	= link_to 'Login with Facebook', '/auth/facebook/'
+	-@restaurant_results.each do |r|
+		%p
+			= link_to "#{r.name}", restaurant_path(r)
+			= "- #{r.location}"
 
--@restaurants.each do | r |
-	%p
-		= link_to "#{r.name}", restaurant_path(r)
-		\-
-		= r.location
+.row-fluid
+	.span6.offset3.restaurant-grid
+		-@restaurants.each_with_index do |r, i|
+			-if i % 2 == 0 && i != 0
+				%div.row-fluid
 
+			.span6.restaurant-tile
+				= image_tag(@list[r.name])
+				.restaurant-title-container
+					%h1.restaurant-title
+						= link_to "#{r.name}", restaurant_path(r)
