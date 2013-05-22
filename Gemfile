@@ -1,4 +1,3 @@
-source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 group :development, :test do
   gem 'sqlite3'
@@ -23,8 +22,4 @@ gem "oauth"
 gem "oauth2"
 gem "omniauth"
 gem "omniauth-facebook"
-group :assets do
-  gem 'bootstrap-sass'
-end
-
-
+gem 'bootstrap-sass' # must be outside assets or it will fail on heroku
