@@ -1,14 +1,14 @@
 class Restaurant < ActiveRecord::Base 
   validates :name, :presence => true
-  has_many  :ratings#, :categories
+  has_many  :ratings #, :categories
 
-  attr_accessible :name, :location, :yelp_id
+  attr_accessible :id,  :name, :location, :yelp_id
 
   def self.search(search)
     find(:all,
-         :conditions => ['name LIKE ?',#' OR category LIKE ?',
+         :conditions => ['lower(name) LIKE ?',#' OR category LIKE ?',
                          #"%#{search}%",
-                         "%#{search}%"])
+                         "%#{search}%".downcase])
   end
 
   def average_rating

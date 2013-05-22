@@ -6,6 +6,9 @@
 #
 one:
   email: test1@test.com
+  id: 1
+  name: Ray
+  last_name: lopez
 
 two:
   email: test2@test.com

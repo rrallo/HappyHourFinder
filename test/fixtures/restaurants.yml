@@ -1,0 +1,17 @@
+one:
+  id: 1
+  name: rest1
+  yelp_id: "south-beach-bar-and-grille-san-diego"
+  location: tu casa
+
+two:
+  id: 2
+  name: rest2
+  yelp_id: "south-beach-bar-and-grille-san-diego"
+  location: mi casa
+
+donCarlos:
+  id: 3
+  name: donCarlosTacos
+  location: Barbara's house
+  yelp_id: "south-beach-bar-and-grille-san-diego"
