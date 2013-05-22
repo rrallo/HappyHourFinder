@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
-		@restaurant = Restaurant.find(params[:id])
+		@restaurant = Restaurant.find params[:id]
 
 		consumer_key = 'ln-FI2hVPWjx4xFhWM5fGw'
 		consumer_secret = 'QVauHsbQnYGdNoMMf5tRyw3doFk'
