@@ -1,13 +1,18 @@
 require 'test_helper'
 
 class RestaurantsControllerTest < ActionController::TestCase
-  test "should show with any id" do
+  test "should show with id 1" do
     get :show , { :id => 1}
-    # @r1 =  assigns(:restaurant)
-    # print @r1
-    # assert_not_nil @r1
-    # assert_not_nil assigns(:restaurant)
-    # assert_response :success
+    @r1 =  assigns(:restaurant)
+    assert_not_nil @r1
+    assert_not_nil assigns(:restaurant)
+    assert_response :success
+  end
+
+  test "should show all on empty search" do
+    get :index, {:search => ""}
+    assert_equal assigns(:restaurant_results), assigns(:restaurants)
+    assert_response :success
   end
 
   test "results should not be nil" do
@@ -22,11 +27,24 @@ class RestaurantsControllerTest < ActionController::TestCase
   	assert_response :success
   end
 
-  test "restaurant search test1" do
-  	post(:index, {'search' => "sea"}, nil, nil)
+  test "restaurant search rest1" do
+    get( :index, { :search => "rest1"}, nil, nil)
   	@r1 = assigns(:restaurant_results)
-  	printf "  -- %d ===", @r1.count
-  	print @r1
+    assert_not_equal @r1.count, 0
+  end
+
+  test "yelp_id's should be assigned" do  
+    get :show, {:id => 1} 
+    assert_not_nil assigns(:restaurant).yelp_id
+    assert_response :success
+
+    get :show, {:id => 2} 
+    assert_not_nil assigns(:restaurant).yelp_id
+    assert_response :success
+
+    get :show, {:id => 3} 
+    assert_not_nil assigns(:restaurant).yelp_id
+    assert_response :success
   end
 
   

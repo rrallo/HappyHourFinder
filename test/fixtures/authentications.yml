@@ -3,11 +3,11 @@
 one:
   user_id: 1
   provider: SomeProvider
-  uid: SomeProvider 
+  uid: 1 
   token: SomeToken
 
 two:
   user_id: 2
   provider: SomeProvider2
-  uid: SomeUid2
+  uid: 2
   token: SomeToken2
