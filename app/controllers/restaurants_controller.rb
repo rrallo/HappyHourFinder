@@ -9,7 +9,30 @@ class RestaurantsController < ApplicationController
     end
 
     @restaurants = Restaurant.all
-	end
+  end
+
+  def new
+    @restaurant = Restaurant.new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @restaurant }
+    end
+  end
+
+  def create
+    @restaurant = Restaurant.new(params[:id])
+
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
+        format.json { render json: @restaurant, status: :created, location: @restaurant }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 	def show
 		@restaurant = Restaurant.find(params[:id])

@@ -1,6 +1,8 @@
 Happy::Application.routes.draw do
-  devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+  ActiveSupport::Deprecation.silence do
+    devise_for :users do
+      get '/users/sign_out' => 'devise/sessions#destroy'
+    end
   end
 
   #get "restaurants/show"
