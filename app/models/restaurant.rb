@@ -6,8 +6,8 @@ class Restaurant < ActiveRecord::Base
 
   def self.search(search)
     find(:all,
-         :conditions => ['name LIKE ?',#' OR category LIKE ?',
+         :conditions => ['lower(name) LIKE ?',#' OR category LIKE ?',
                          #"%#{search}%",
-                         "%#{search}%"])
+                         "%#{search}%".downcase])
   end
 end
