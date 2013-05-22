@@ -12,7 +12,7 @@ class RestaurantsControllerTest < ActionController::TestCase
 
   test "should show all on empty search" do
     get :index, {:search => ""}
-    assert_equal assigns(:restaurant_results), assigns(:restaurants)
+    assert_equal Restaurant.all, assigns(:restaurants)
     assert_response :success
   end
 
@@ -30,7 +30,7 @@ class RestaurantsControllerTest < ActionController::TestCase
 
   test "restaurant search rest1" do
     get( :index, { :search => "rest1"}, nil, nil)
-  	@r1 = assigns(:restaurant_results)
+  	@r1 = assigns(:restaurants)
     assert_not_equal @r1.count, 0
   end
 
