@@ -23,8 +23,4 @@ gem "oauth"
 gem "oauth2"
 gem "omniauth"
 gem "omniauth-facebook"
-group :assets do
-  gem 'bootstrap-sass'
-end
-
-
+gem 'bootstrap-sass'
