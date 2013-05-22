@@ -10,4 +10,12 @@ class Restaurant < ActiveRecord::Base
                          #"%#{search}%",
                          "%#{search}%"])
   end
+
+  def average_rating
+    @rating = 0
+    self.ratings.each do | rating |
+      @rating = @rating + rating.rating
+    end
+    @rating.to_f / self.ratings.size.to_f
+  end
 end

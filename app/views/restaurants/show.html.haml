@@ -6,7 +6,11 @@
   .span8.offset1.content
     %h1= @restaurant.name
     %p= @yelp["location"]["display_address"].join(",")
-    %p Rating: #{@yelp["rating"]} / 5.0
+    %p Yelp Rating: #{@yelp["rating"]} / 5.0
+    -if @restaurant.ratings.blank?
+      %p No Happy Hour Ratings Yet!
+    -else
+      %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
     %h2 Reviews
     %ul
       -@yelp["reviews"].each do |review|
