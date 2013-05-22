@@ -4,15 +4,18 @@ require 'oauth'
 class RestaurantsController < ApplicationController
 	def index
     if params[:search]
-      @restaurant_results = Restaurant.search(params[:search])
+      @restaurants = Restaurant.search(params[:search])
       params[:search] = nil
     end
 
-    @restaurants = Restaurant.all
+    if @restaurants.nil? or @restaurants.empty?
+      @restaurants = Restaurant.all
+    end
+
     @list = {}
     @restaurants.each do |r|
-    	yelp = connectYelp r
-    	@list[r.name] = yelp["image_url"].gsub("ms\.jpg", "ls.jpg")
+      yelp = connectYelp r
+      @list[r.name] = yelp["image_url"].gsub("ms\.jpg", "ls.jpg")
     end
   end
 
