@@ -6,17 +6,24 @@
   .span8.offset1.content
     %h1= @restaurant.name
     %p= @yelp["location"]["display_address"].join(",")
-    %p Yelp Rating: #{@yelp["rating"]} / 5.0
-    -if @restaurant.ratings.blank?
-      %p No Happy Hour Ratings Yet!
-    -else
-      %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
     %h2 Reviews
     %ul
       -@yelp["reviews"].each do |review|
         %li
           #{review["excerpt"]}
+    -if user_signed_in?
+      = form_tag do
+        = label_tag 'review', 'Your Review'
+        = text_area_tag 'review'
+    -else 
+      %p= link_to "Login to leave a review", "/auth/facebook"
 
+    %h2 Ratings
+    %p Yelp Rating: #{@yelp["rating"]} / 5.0
+    -if @restaurant.ratings.blank?
+      %p No Happy Hour Ratings Yet!
+    -else
+      %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
     -if user_signed_in?
       %p Happy Hour Rating:
       = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
