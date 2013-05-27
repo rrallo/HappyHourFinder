@@ -1,6 +1,6 @@
 Happy::Application.routes.draw do
   ActiveSupport::Deprecation.silence do
-    devise_for :users do
+    devise_for :users, path: 'auth' do
       get '/users/sign_out' => 'devise/sessions#destroy'
     end
   end
