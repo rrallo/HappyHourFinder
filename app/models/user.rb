@@ -31,5 +31,9 @@ class User < ActiveRecord::Base
     self.authentication.token   = auth['credentials']['token']
     self.authentication.user_id = self.id
     self.authentication.save
+    #authentication.build(:provider => auth['provider'],
+    #                     :uid => auth['uid'],
+    #                     :token => auth['credentials']['token'],
+    #                     :user_id => self.id)
   end
 end
