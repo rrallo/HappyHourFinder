@@ -3,9 +3,9 @@ class AuthenticationsController < ApplicationController
     auth = request.env['omniauth.auth']
 
     # Try to find authentications first
-    authentication = Authentication.find_by_provider_and_uid(auth['provider'], auth['uid'])
+    authentication = Authentication.find_by_uid(auth['uid'])
 
-    if authentication
+    if authentication != nil and authentication.user != nil
       # Authentication found, sign the user in.
       flash[:notice] = 'Signed in successfully.'
 
