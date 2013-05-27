@@ -10,15 +10,14 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = 'Signed in successfully.'
 
       # Update information.
-      user = authentication.user
-      user.update_fields(auth)
+      authentication.user.update_fields(auth)
 
-      sign_in_and_redirect(:user, user)
+      sign_in_and_redirect(:user, authentication.user)
     else
       # Authentication not found, thus a new user.
       user = User.new
       user.update_fields(auth)
-      if $user.save(:validate => false)
+      if user.save(:validate => false)
         flash[:notice] = 'Account created and signed in successfully.'
         sign_in_and_redirect(:user, user)
       else
