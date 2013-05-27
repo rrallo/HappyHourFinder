@@ -27,9 +27,11 @@ class User < ActiveRecord::Base
     self.locale        = auth['extra']['raw_info']['locale']
     self.updated_time  = auth['extra']['raw_info']['updated_time']
 
-    self.authentication         = Authentication.find_or_create_by_provider_and_uid(provider: auth['provider'], uid: auth['uid'])
-    self.authentication.token   = auth['credentials']['token']
-    self.authentication.user_id = self.id
+    # Again, saving token is optional.
+    # If you haven't created the column in authentications table,
+    # this will fail
+    self.authentication = Authentication.find_or_create_by_provider_and_uid(provider: auth['provider'], uid: auth['uid'])
+    self.authentication.token = auth['credentials']['token']
     self.authentication.save
   end
 end

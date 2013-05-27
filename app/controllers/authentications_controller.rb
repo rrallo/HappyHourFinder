@@ -5,12 +5,12 @@ class AuthenticationsController < ApplicationController
     # Try to find authentications first
     authentication = Authentication.find_by_uid(auth['uid'])
 
-    if authentication
+    if authentication != nil and authentication.user != nil
       # Authentication found, sign the user in.
       flash[:notice] = 'Signed in successfully.'
 
       # Update information.
-      user = User.find_by_user_id(authentication.user_id)
+      user = authentication.user
       user.update_fields(auth)
 
       sign_in_and_redirect(:user, user)
