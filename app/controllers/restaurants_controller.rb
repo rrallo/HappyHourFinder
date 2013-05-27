@@ -70,17 +70,17 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find(params[:id])
     user = FbGraph::User.me current_user.authentication.token
     site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
-    #begin
+    begin
       user.link!(link: site, message: 'Check out the happy hours of this restaurant! (testing cse 112 app)')
       respond_to do |format|
         format.html { redirect_to @restaurant, notice: "You have posted a link to #{site}" }
         format.json { render json: @restaurant }
       end
-    #rescue
-    #  respond_to do |format|
-    #    format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
-    #    format.json { render json: @restaurant }
-    #  end
-    #end
+    rescue
+      respond_to do |format|
+        format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
+        format.json { render json: @restaurant }
+      end
+    end
   end
 end
