@@ -5,13 +5,12 @@ Happy::Application.routes.draw do
     end
   end
 
-  #get "restaurants/show"
-
-	resources :restaurants 
+	resources :restaurants
   resources :ratings
   resources :home
+  resources :users
 
-	root :to => redirect("/restaurants")
+	root :to => redirect('/restaurants')
 	match '/auth/:provider/callback' => 'authentications#create'
-
+  match '/restaurants/share_link/:id' => 'restaurants#share_link'
 end
