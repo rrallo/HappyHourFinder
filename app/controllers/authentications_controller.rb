@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = 'Signed in successfully.'
 
       # Update information.
-      user = User.find(authentication.user_id)
+      user = User.find_by_user_id(authentication.user_id)
       user.update_fields(auth)
 
       sign_in_and_redirect(:user, user)
