@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'oauth'
-require 'fb_graph'
 
 class RestaurantsController < ApplicationController
   def index
@@ -43,10 +42,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def show
-    @restaurant = Restaurant.find(params[:id])
-    @yelp = connectYelp @restaurant
-    @header_img = @restaurant.name.downcase.tr(" ", "_") + ".jpg"
+	def show
+		@restaurant = Restaurant.find(params[:id])
+		@yelp = connectYelp @restaurant
+		@header_img = @restaurant.name.downcase.tr(" ", "_") + ".jpg"
   end
 
   def connectYelp restaurant
@@ -55,32 +54,14 @@ class RestaurantsController < ApplicationController
     token = 'fuh6R4C4UvSpbUbSNuVZWGZxpTzqb8iU'
     token_secret = '7aBPLXymeigPDcVZiszOl6DT_Ts'
 
-    api_host = 'api.yelp.com'
+		api_host = 'api.yelp.com'
 
-    consumer = OAuth::Consumer.new(consumer_key, consumer_secret, {:site => "http://#{api_host}"})
-    access_token = OAuth::AccessToken.new(consumer, token, token_secret)
+		consumer = OAuth::Consumer.new(consumer_key, consumer_secret, {:site => "http://#{api_host}"})
+		access_token = OAuth::AccessToken.new(consumer, token, token_secret)
 
-    path = "/v2/business/" + restaurant.yelp_id
+		path = "/v2/business/" + restaurant.yelp_id
 
-    p = access_token.get(path).body
-    ActiveSupport::JSON.decode(p)
-  end
-
-  def share_link
-    @restaurant = Restaurant.find(params[:id])
-    user = FbGraph::User.me current_user.authentication.token
-    site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
-    #begin
-      user.link!(link: site, message: 'Check out the happy hours of this restaurant! (testing cse 112 app)')
-      respond_to do |format|
-        format.html { redirect_to @restaurant, notice: "You have posted a link to #{site}" }
-        format.json { render json: @restaurant }
-      end
-    #rescue
-    #  respond_to do |format|
-    #    format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
-    #    format.json { render json: @restaurant }
-    #  end
-    #end
-  end
+		p = access_token.get(path).body
+		ActiveSupport::JSON.decode(p)
+	end
 end
