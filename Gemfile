@@ -24,3 +24,4 @@ gem "oauth2"
 gem "omniauth"
 gem "omniauth-facebook"
 gem 'bootstrap-sass'
+gem 'fb_graph'

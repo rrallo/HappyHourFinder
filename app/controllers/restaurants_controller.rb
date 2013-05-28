@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'oauth'
+require 'fb_graph'
 
 class RestaurantsController < ApplicationController
   def index
@@ -46,7 +47,7 @@ class RestaurantsController < ApplicationController
 		@restaurant = Restaurant.find(params[:id])
 		@yelp = connectYelp @restaurant
 		@header_img = @restaurant.photo_url
-    puts y @restaurant
+    #puts y @restaurant
   end
 
   def connectYelp restaurant
@@ -65,4 +66,23 @@ class RestaurantsController < ApplicationController
 		p = access_token.get(path).body
 		ActiveSupport::JSON.decode(p)
 	end
+
+  def share_link
+   @restaurant = Restaurant.find(params[:id])
+   user = FbGraph::User.me current_user.authentications.first.token
+   site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
+   begin
+     user.link!(link: site, message: 'Check out the happy hours of this restaurant! (testing cse 112 app)')
+     respond_to do |format|
+       format.html { redirect_to @restaurant, notice: "You have posted a link to #{site}" }
+       format.json { render json: @restaurant }
+     end
+   rescue
+     respond_to do |format|
+       format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
+       format.json { render json: @restaurant }
+     end
+   end
+ end
+
 end

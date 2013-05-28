@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20130527224804) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "token_secret"
   end
 
   create_table "ratings", :force => true do |t|
