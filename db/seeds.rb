@@ -8,7 +8,7 @@
 
 Restaurant.delete_all
 
-[["South Beach Bar & Grill", "Ocean Beach", 3, "south-beach-bar-and-grille-san-diego"],
- ["Blue Water Seafood", "San Diego", 2, "blue-water-seafood-market-and-grill-san-diego"]].each do |n,l,r, y|
-	Restaurant.find_or_create_by_name name: n, location: l, rating: r, yelp_id: y
+[["South Beach Bar & Grill", "Ocean Beach", 3, "south-beach-bar-and-grille-san-diego", "https://s3-us-west-1.amazonaws.com/happyapp/images/south_beach_bar_%26_grill.jpg"],
+ ["Blue Water Seafood", "San Diego", 2, "blue-water-seafood-market-and-grill-san-diego", "https://s3-us-west-1.amazonaws.com/happyapp/images/blue_water_seafood.jpg"]].each do |n,l,r, y, p|
+	Restaurant.find_or_create_by_name name: n, location: l, rating: r, yelp_id: y, photo_url: p
 end
