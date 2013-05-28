@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520041728) do
+ActiveRecord::Schema.define(:version => 20130527224804) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130520041728) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token_secret"
   end
 
   create_table "ratings", :force => true do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130520041728) do
     t.integer "photos_id"
     t.integer "rating"
     t.string  "yelp_id"
+    t.string  "photo_url"
   end
 
   create_table "users", :force => true do |t|
