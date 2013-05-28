@@ -2,7 +2,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, :presence => true
   has_many  :ratings #, :categories
 
-  attr_accessible :id,  :name, :location, :yelp_id
+  attr_accessible :id,  :name, :location, :yelp_id, :photo_url
 
   def self.search(search)
     find(:all,

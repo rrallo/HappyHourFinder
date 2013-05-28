@@ -45,7 +45,8 @@ class RestaurantsController < ApplicationController
 	def show
 		@restaurant = Restaurant.find(params[:id])
 		@yelp = connectYelp @restaurant
-		@header_img = @restaurant.name.downcase.tr(" ", "_") + ".jpg"
+		@header_img = @restaurant.photo_url
+    puts y @restaurant
   end
 
   def connectYelp restaurant
