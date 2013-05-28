@@ -3,7 +3,7 @@ require 'oauth'
 require 'fb_graph'
 
 class RestaurantsController < ApplicationController
-	def index
+  def index
     if params[:search]
       @restaurants = Restaurant.search(params[:search])
       params[:search] = nil
@@ -52,8 +52,8 @@ class RestaurantsController < ApplicationController
   def connectYelp restaurant
     consumer_key = 'ln-FI2hVPWjx4xFhWM5fGw'
     consumer_secret = 'QVauHsbQnYGdNoMMf5tRyw3doFk'
-    token = 'LAZBDQVnH-ZmlFa0U15jcWcTTbayNE_y'
-    token_secret = 'iPGhsMEKy-WmU-kK24bwxpryagM'
+    token = 'fuh6R4C4UvSpbUbSNuVZWGZxpTzqb8iU'
+    token_secret = '7aBPLXymeigPDcVZiszOl6DT_Ts'
 
     api_host = 'api.yelp.com'
 
