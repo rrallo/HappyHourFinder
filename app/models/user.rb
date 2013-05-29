@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
                   :password, :password_confirmation, :remember_me
 
   has_many :ratings
+  has_many :reviews
   has_many :authentications, :dependent => :delete_all
 
   def update_fields(auth)

@@ -13,12 +13,11 @@
         %li
           #{review["excerpt"]}
     %p Happy Hour Reviews
-    -reviews = Review.find_all_by_restaurant_id(@restaurant.id)
-    -if reviews.blank?
+    -if @restaurant.reviews.blank?
       %p No Happy Hour Reviews Yet!
     -else
       %ul
-        -reviews.each do |review|
+        -@restaurant.reviews.each do |review|
           %li
             =review.review
     -if user_signed_in?
