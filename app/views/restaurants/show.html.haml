@@ -7,14 +7,26 @@
     %h1= @restaurant.name
     %p= @yelp["location"]["display_address"].join(",")
     %h2 Reviews
+    %p Yelp Reviews
     %ul
       -@yelp["reviews"].each do |review|
         %li
           #{review["excerpt"]}
+    %p Happy Hour Reviews
+    -reviews = Review.find_all_by_restaurant_id(@restaurant.id)
+    -if reviews.blank?
+      %p No Happy Hour Reviews Yet!
+    -else
+      %ul
+        -reviews.each do |review|
+          %li
+            =review.review
     -if user_signed_in?
-      = form_tag do
-        = label_tag 'review', 'Your Review'
-        = text_area_tag 'review'
+      = form_for @review do |f|
+        = f.label 'review', 'Your Review'
+        = f.text_area 'review'
+        = hidden_field_tag("restaurant_id", @restaurant.id)
+        = f.submit :Submit
     -else 
       %p= link_to "Login to leave a review", "/auth/facebook"
 

@@ -9,6 +9,7 @@ Happy::Application.routes.draw do
 
 	resources :restaurants 
   resources :ratings
+  resources :reviews
   resources :home
 
 	root :to => redirect("/restaurants")
