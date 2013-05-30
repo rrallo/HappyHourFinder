@@ -51,7 +51,7 @@
         = hidden_field_tag("restaurant_id", @restaurant.id)
         = f.submit :Submit
     -else
-      = link_to "Please log in to rate this restaurant's happy hour.", '/auth/facebook/'
+      = link_to "Please login to rate this restaurant's happy hour.", '/auth/facebook/'
 
     -if user_signed_in?
       = link_to "Share a link to this restaurant on Facebook",
