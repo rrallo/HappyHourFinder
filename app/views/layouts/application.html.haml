@@ -11,20 +11,26 @@
     = csrf_meta_tags
     = yield(:head)
   %body
-    %header.navbar
-      %nav.navbar-inner
-        .container.header-nav
-          = render 'layouts/navigation'
-          .facebook
-            -if user_signed_in?
-              = "Hi #{current_user.name} "
-              = link_to 'Logout', destroy_user_session_path, :method => :delete
-            -else
-              = link_to 'Login with Facebook', '/auth/facebook/'
-          .search
-            = form_tag restaurants_path, :method => 'get', :class => 'form-search' do
-              = text_field_tag :search, params[:search], :id => 'search_field'
-              = submit_tag "Search or Clear", :name => nil, :class => 'btn'
+    %header
+      .container
+        = image_tag("drinks.png", {:class => "logo"})
+        .title-container
+          %h1.site-title BarRater
+          %h1.tagline find the best happy hours in SD
+
+        %nav.header-nav= render 'layouts/navigation'
+
+        .facebook
+          -if user_signed_in?
+            = "Hi #{current_user.name} "
+            = link_to 'Logout', destroy_user_session_path, :method => :delete
+          -else
+            = link_to 'Login', '/auth/facebook/'
+        .search
+          = form_tag restaurants_path, :method => 'get', :class => 'form-search' do
+            = text_field_tag :search, params[:search], :id => 'search_field'
+            = submit_tag "Search", :name => nil, :class => 'btn'
+    .mock-bar
     #main{:role => "main"}
       .container-fluid
         .row-fluid
