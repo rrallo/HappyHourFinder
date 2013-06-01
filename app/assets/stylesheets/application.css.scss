@@ -35,7 +35,6 @@ ul.nav li {
   background-color: #FCC;
   border: solid 1px #C66;
 }
-
 .logo {
   float: left;
 }
@@ -80,16 +79,43 @@ ul.nav li {
 }
 
 .search {
-  text-align: right;
-
   form {
     margin-bottom: 0
   }
 }
 
-.facebook {
-  margin-top: 0;
+.header-nav {
+  text-align: right;
+  margin: 15px 0 2px 0;
+
+  a {
+    color: #4b7443;
+    font-family: 'PlaytimeWithHotToddiesRegular', Helevetica, Arial, sans-serif;
+    font-size: 20px;
+
+    border-left: 1px solid #b8bb97;
+    padding-left: 10px;
+    padding-right: 5px;
+
+    -webkit-transition: color .15s;
+    -moz-transition: color .15s;
+    -ms-transition: color .15s;
+    -o-transition: color .15s;
+    transition: color .15s;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    &:hover {
+      color: currentcolor;
+      text-decoration: none;
+
+      color: #bdcda9;
+    }
+  }
 }
+
 
 @font-face {
     font-family: 'PlaytimeWithHotToddiesRegular';
