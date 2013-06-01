@@ -7,20 +7,34 @@
 }
 
 .restaurant-grid {
-	margin-top: 10px
+	margin: 20px auto;
+	max-width: 1300px;
 }
 
 .restaurant-tile {
+	max-width: 250px;
+	height: 250px;
+
+	display: inline-block;
+
+	margin: 3px;
+
 	img {
-		width: 100%;
+		max-width: 100%;
 	}
+
+	box-shadow: 0px 0px 3px rgba(0,0,0, .5);
+	border-radius: 2px;
 
 	position: relative;
 	overflow: hidden;
 }
+
+
+
 .restaurant-title-container {
 	background: rgba(0,0,0, .55);
-	padding: 0 10px 10px;
+	padding: 10px;
 
 	width: 100%;
 
@@ -29,14 +43,41 @@
 	z-index: 10;
 }
 
+.restaurant-tile .restaurant-title-container.with-rating {
+	bottom: -26px;
+
+	-webkit-transition: bottom .1s;
+	-moz-transition: bottom .1s;
+	-ms-transition: bottom .1s;
+	-o-transition: bottom .1s;
+	transition: bottom .1s;
+
+	.rating {
+		color: rgba(255,255,255,.8);
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.restaurant-tile:hover .restaurant-title-container.with-rating,
+.restaurant-tile:focus .restaurant-title-container.with-rating {
+	bottom: 0;
+}
+
 .restaurant-title {
 	margin: 0;
 	font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+	font-size: 18px;
+	line-height: 20px;
 
 	a {
 		font-size: 18px;
 		line-height: 20px;
 		color: #f0f0f0;
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 
 }

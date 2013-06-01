@@ -13,7 +13,7 @@
   %body
     %header.navbar
       %nav.navbar-inner
-        .container
+        .container.header-nav
           = render 'layouts/navigation'
           .facebook
             -if user_signed_in?
@@ -26,11 +26,11 @@
               = text_field_tag :search, params[:search], :id => 'search_field'
               = submit_tag "Search or Clear", :name => nil, :class => 'btn'
     #main{:role => "main"}
-      .container
+      .container-fluid
         .row-fluid
           .span12
             = render 'layouts/messages'
             = yield
-        %footer
+    %footer
 
 

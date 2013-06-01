@@ -1,11 +1,14 @@
 .row-fluid
-	.span6.offset3.restaurant-grid
+	.restaurant-grid
 		-@restaurants.each_with_index do |r, i|
-			-if i % 2 == 0 && i != 0
-				%div.row-fluid
-
-			.span6.restaurant-tile
+			.restaurant-tile
 				= image_tag(@list[r.name])
-				.restaurant-title-container
-					%h1.restaurant-title
-						= link_to "#{r.name}", restaurant_path(r)
+				-if !(r.ratings).blank?
+					.restaurant-title-container 
+						%h1.restaurant-title
+							= link_to "#{r.name}", restaurant_path(r)
+				-else 
+					.restaurant-title-container.with-rating
+						%h1.restaurant-title
+							= link_to "#{r.name}", restaurant_path(r)
+						%p.rating #{r.average_rating} / 5.0
