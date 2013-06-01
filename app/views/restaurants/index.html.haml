@@ -2,11 +2,11 @@
 	.restaurant-grid
 		-@restaurants.each_with_index do |r, i|
 			.restaurant-tile
-				= image_tag(@list[r.name])
-				.restaurant-title-container 
-					%h1.restaurant-title
-						= link_to "#{r.name}", restaurant_path(r)
-					-if r.ratings.blank?
-						%p.rating No ratings yet!
-					-else
-						%p.rating #{r.average_rating} / 5.0
+				%a{:href=>restaurant_path(r)}
+					= image_tag(@list[r.name])
+					.restaurant-title-container 
+						%h1.restaurant-title= r.name
+						-if r.ratings.blank?
+							%p.rating No ratings yet!
+						-else
+							%p.rating #{r.average_rating} / 5.0
