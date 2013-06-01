@@ -41,9 +41,7 @@
 	position: absolute;
 	bottom: 0;
 	z-index: 10;
-}
 
-.restaurant-tile .restaurant-title-container.with-rating {
 	bottom: -26px;
 
 	-webkit-transition: bottom .1s;
@@ -59,8 +57,8 @@
 	}
 }
 
-.restaurant-tile:hover .restaurant-title-container.with-rating,
-.restaurant-tile:focus .restaurant-title-container.with-rating {
+.restaurant-tile:hover .restaurant-title-container,
+.restaurant-tile:focus .restaurant-title-container {
 	bottom: 0;
 }
 

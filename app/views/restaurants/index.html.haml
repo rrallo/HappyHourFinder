@@ -3,12 +3,10 @@
 		-@restaurants.each_with_index do |r, i|
 			.restaurant-tile
 				= image_tag(@list[r.name])
-				-if !(r.ratings).blank?
-					.restaurant-title-container 
-						%h1.restaurant-title
-							= link_to "#{r.name}", restaurant_path(r)
-				-else 
-					.restaurant-title-container.with-rating
-						%h1.restaurant-title
-							= link_to "#{r.name}", restaurant_path(r)
+				.restaurant-title-container 
+					%h1.restaurant-title
+						= link_to "#{r.name}", restaurant_path(r)
+					-if r.ratings.blank?
+						%p.rating No ratings yet!
+					-else
 						%p.rating #{r.average_rating} / 5.0
