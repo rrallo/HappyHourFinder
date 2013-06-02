@@ -7,37 +7,63 @@
 }
 
 .restaurant-grid {
-	margin-top: 10px
+	margin: 20px auto;
+	max-width: 1073px;
 }
 
 .restaurant-tile {
-	img {
-		width: 100%;
-	}
+
+	max-width: 250px;
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	box-shadow: 0px 0px 3px rgba(0,0,0, .5);
+	border-radius: 2px;
 
 	position: relative;
 	overflow: hidden;
 }
+
+
+
 .restaurant-title-container {
 	background: rgba(0,0,0, .55);
-	padding: 0 10px 10px;
+	padding: 10px;
 
 	width: 100%;
 
 	position: absolute;
 	bottom: 0;
 	z-index: 10;
+
+	bottom: -26px;
+
+	-webkit-transition: bottom .1s;
+	-moz-transition: bottom .1s;
+	-ms-transition: bottom .1s;
+	-o-transition: bottom .1s;
+	transition: bottom .1s;
+
+	.rating {
+		color: rgba(255,255,255,.8);
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.restaurant-tile:hover .restaurant-title-container,
+.restaurant-tile:focus .restaurant-title-container {
+	bottom: 0;
 }
 
 .restaurant-title {
 	margin: 0;
 	font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
-
-	a {
-		font-size: 18px;
-		line-height: 20px;
-		color: #f0f0f0;
-	}
+	font-size: 18px;
+	line-height: 20px;
+	
+	color: #f0f0f0;
 
 }
 
@@ -54,19 +80,21 @@
 }
 
 .content {
-	-webkit-box-shadow: 0 0 2px rgba(0,0,0, .5);
-	-moz-box-shadow: 0 0 2px rgba(0,0,0, .5);
-	box-shadow: 0 0 2px rgba(0,0,0, .5);
-	border-radius: 3px;
-
 	background: #fff;
-	
-	position: relative;
-	z-index: 10;
-	margin: -100px 0 50px;
 	padding: 20px;
 
 	h1 {
 		font-family: 'PlaytimeWithHotToddiesRegular', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
 	}
+}
+
+.content.with-header-img {
+	-webkit-box-shadow: 0 0 2px rgba(0,0,0, .5);
+	-moz-box-shadow: 0 0 2px rgba(0,0,0, .5);
+	box-shadow: 0 0 2px rgba(0,0,0, .5);
+	border-radius: 3px;
+
+	position: relative;
+	z-index: 10;
+	margin: -100px 0 50px;
 }

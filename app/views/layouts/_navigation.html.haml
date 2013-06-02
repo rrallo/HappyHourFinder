@@ -1,1 +1,8 @@
-= link_to "Restaurants", root_path, :class => 'brand'
+= link_to "View", root_path
+= link_to "Add", root_path
+-if user_signed_in?
+    = "Hi #{current_user.name} "
+    = link_to 'Logout', destroy_user_session_path, :method => :delete
+-else
+    = link_to 'Login', '/auth/facebook/'
+        

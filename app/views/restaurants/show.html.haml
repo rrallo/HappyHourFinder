@@ -1,59 +1,61 @@
-%div.header-img
-  = image_tag(@header_img)
+-if !(@header_img).blank?
+  %div.header-img
+    = image_tag(@header_img)
 
+.container 
+  .row-fluid
+    .span8
+      %div{:class => !(@header_img).blank? ? "content with-header-img" : "content"}
+        %h1= @restaurant.name
+        %p= @yelp["location"]["display_address"].join(",")
+        %h2 Ratings
+        %p Yelp Rating: #{@yelp["rating"]} / 5.0
+        -if @restaurant.ratings.blank?
+          %p No Happy Hour Ratings Yet!
+        -else
+          %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
+        -if user_signed_in?
+          %p Happy Hour Rating:
+          = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
+            = f.label("value_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})
+            = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
+            = f.label("value_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"})
+            = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
+            = f.label("value_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"})
+            = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
+            = f.label("value_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"})
+            = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
+            = f.label("value_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"})
+            = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
+            = hidden_field_tag("restaurant_id", @restaurant.id)
+            = f.submit :Submit
+        -else
+          = link_to "Please log in to rate this restaurant's happy hour.", '/auth/facebook/'
 
-.row-fluid
-  .span8.offset1.content
-    %h1= @restaurant.name
-    %p= @yelp["location"]["display_address"].join(",")
-    %h2 Reviews
-    %p Yelp Reviews
-    %ul
-      -@yelp["reviews"].each do |review|
-        %li
-          #{review["excerpt"]}
-    %p Happy Hour Reviews
-    -if @restaurant.reviews.blank?
-      %p No Happy Hour Reviews Yet!
-    -else
+        -if user_signed_in?
+          = link_to "Share a link to this restaurant on Facebook",
+            {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id},
+            {:id => @restaurant.id}
+    .span4
+      %h2 Reviews
+      %p Yelp Reviews
       %ul
-        -@restaurant.reviews.each do |review|
+        -@yelp["reviews"].each do |review|
           %li
-            =review.review
-    -if user_signed_in?
-      = form_for @review do |f|
-        = f.label 'review', 'Your Review'
-        = f.text_area 'review'
-        = hidden_field_tag("restaurant_id", @restaurant.id)
-        = f.submit :Submit
-    -else 
-      %p= link_to "Login to leave a review", "/auth/facebook"
-
-    %h2 Ratings
-    %p Yelp Rating: #{@yelp["rating"]} / 5.0
-    -if @restaurant.ratings.blank?
-      %p No Happy Hour Ratings Yet!
-    -else
-      %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
-    -if user_signed_in?
-      %p Happy Hour Rating:
-      = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
-        = f.label("value_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"})
-        = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
-        = f.label("value_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"})
-        = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
-        = f.label("value_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"})
-        = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
-        = f.label("value_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"})
-        = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
-        = f.label("value_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"})
-        = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
-        = hidden_field_tag("restaurant_id", @restaurant.id)
-        = f.submit :Submit
-    -else
-      = link_to "Please login to rate this restaurant's happy hour.", '/auth/facebook/'
-
-    -if user_signed_in?
-      = link_to "Share a link to this restaurant on Facebook",
-        {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id},
-        {:id => @restaurant.id}
+            #{review["excerpt"]}
+      %p Happy Hour Reviews
+      -if @restaurant.reviews.blank?
+        %p No Happy Hour Reviews Yet!
+      -else
+        %ul
+          -@restaurant.reviews.each do |review|
+            %li
+              =review.review
+      -if user_signed_in?
+        = form_for @review do |f|
+          = f.label 'review', 'Your Review'
+          = f.text_area 'review'
+          = hidden_field_tag("restaurant_id", @restaurant.id)
+          = f.submit :Submit
+      -else 
+        %p= link_to "Login to leave a review", "/auth/facebook"
