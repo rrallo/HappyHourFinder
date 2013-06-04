@@ -7,7 +7,7 @@
 				= image_tag(@list[r.name])
 				.restaurant-title-container 
 					%h1.restaurant-title= r.name
-					-if r.ratings.blank?
+					-if Rating.find_by_id(r.id).nil?
 						%p.rating No ratings yet!
 					-else
 						%p.rating #{r.average_rating} / 5.0

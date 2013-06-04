@@ -10,7 +10,7 @@
         %p= @yelp["location"]["display_address"].join(",")
         %h2 Ratings
         %p Yelp Rating: #{@yelp["rating"]} / 5.0
-        -if @restaurant.ratings.blank?
+        -if Rating.find_by_id(@restaurant.id).nil?
           %p Be the first to rate this happy hour!
         -else
           %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
@@ -19,31 +19,32 @@
         -else
           = link_to "Login to rate this restaurant's happy hour.", '/auth/facebook/'
 
-        = content_tag('div', :class => 'hide fade modal', :id => 'ratingModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "ratingModalLabel", "aria-hidden" => "true") do
-          .modal-header
-            %h3#ratingModalLabel= "Rate #{@restaurant.name}"
-            = form_for(rating_ballot) do |f|
-              .modal-body
-                .controls
-                  %label.radio.inline
-                    = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
-                    1
-                  %label.radio.inline
-                    = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
-                    2
-                  %label.radio.inline
-                    = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
-                    3
-                  %label.radio.inline
-                    = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
-                    4
-                  %label.radio.inline
-                    = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
-                    5
-                  = hidden_field_tag("restaurant_id", @restaurant.id)
-              .modal-footer
-                = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
-                = f.submit(:Rate, :class => 'btn btn-primary')
+        -if user_signed_in?
+          = content_tag('div', :class => 'hide fade modal', :id => 'ratingModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "ratingModalLabel", "aria-hidden" => "true") do
+            .modal-header
+              %h3#ratingModalLabel= "Rate #{@restaurant.name}"
+              = form_for(rating_ballot) do |f|
+                .modal-body
+                  .controls
+                    %label.radio.inline
+                      = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
+                      1
+                    %label.radio.inline
+                      = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
+                      2
+                    %label.radio.inline
+                      = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
+                      3
+                    %label.radio.inline
+                      = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
+                      4
+                    %label.radio.inline
+                      = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
+                      5
+                    = hidden_field_tag("restaurant_id", @restaurant.id)
+                .modal-footer
+                  = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
+                  = f.submit(:Rate, :class => 'btn btn-primary')
         %h2 Happy Hour Reviews
         -if @restaurant.reviews.blank?
           %p Be the first to review!
