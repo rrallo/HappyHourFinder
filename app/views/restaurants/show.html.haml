@@ -48,7 +48,7 @@
         -if @restaurant.reviews.blank?
           %p Be the first to review!
         -else
-          %ul
+          %ul.happy-review-list
             -@restaurant.reviews.each do |review|
               %li
                 #{review.user.name} - 
@@ -72,7 +72,7 @@
               = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
               = f.submit(:Review, :class => 'btn btn-primary')
         %h3 Yelp Reviews
-        %ul
+        %ul.yelp-review-list
           -@yelp["reviews"].each do |review|
             %li
               #{review["excerpt"]}

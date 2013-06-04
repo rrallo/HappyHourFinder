@@ -97,3 +97,19 @@
 
 	margin: -100px 0 50px;
 }
+
+.yelp-review-list {
+	list-style-image: url('yelp-icon.png');
+
+	li {
+		margin-top: 3px;
+	}
+}
+
+.happy-review-list {
+	list-style-image: url('happy-review-icon.jpg');
+
+	li {
+		margin-top: 5px;
+	}
+}
