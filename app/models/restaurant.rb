@@ -5,6 +5,10 @@ class Restaurant < ActiveRecord::Base
 
   attr_accessible :id, :name, :location, :yelp_id, :photo_url, :is_approved
 
+  def approved?
+    is_approved
+  end
+  
   def self.search(search)
     find(:all,
          :conditions => ['lower(name) LIKE ?',#' OR category LIKE ?',

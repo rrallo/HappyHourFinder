@@ -1,6 +1,7 @@
 = render 'layouts/messages'
 .restaurant-grid
 	-@restaurants.each_with_index do |r, i|
+		- next if not r.approved?
 		- if i % 4 == 0
 			<div class="row-fluid">
 		.restaurant-tile.span3

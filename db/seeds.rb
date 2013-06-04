@@ -64,5 +64,5 @@ Restaurant.delete_all
         ""
     ]
 ].each do |n,l,y,p|
-	Restaurant.find_or_create_by_name name: n, location: l, yelp_id: y, photo_url: p
+	Restaurant.find_or_create_by_name name: n, location: l, yelp_id: y, photo_url: p, is_approved: true
 end
