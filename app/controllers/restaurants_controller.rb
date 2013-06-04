@@ -112,4 +112,41 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def make_admin
+    if params[:passphrase].downcase == "barrater"
+      current_user.is_admin = true
+
+      respond_to do |format|
+        if current_user.save
+          format.html { redirect_to :back, notice: 'You are now an admin.' }
+        else
+          format.html { redirect_to :back, alert: 'There was an error. Please contact an admin.' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, alert: 'Incorrect password.' }
+      end
+    end
+  end
+
+  def demote_admin
+    if current_user.admin?
+      current_user.is_admin = false
+
+      respond_to do |format|
+        if current_user.save
+          format.html { redirect_to :back, notice: 'You are now a regular user.' }
+        else
+          format.html { redirect_to :back, alert: 'There was an error.' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :back, alert: 'You are not an admin.' }
+      end
+    end
+  end
+
+
 end

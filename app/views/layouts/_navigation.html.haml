@@ -2,11 +2,14 @@
 -if user_signed_in?
     -if current_user.admin?
         = link_to "Review", new_restaurant_path
+        = link_to "Demote", '/demote_admin'
     -else
-        = link_to "Add", '/restaurant/new_request'
+        = link_to "Add", '/new_restaurant_request'
+        = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
+            = text_field_tag :passphrase, "Passphrase"
+            = submit_tag "Request to be admin"
 
 -if user_signed_in?
     = link_to "Logout #{current_user.name}", destroy_user_session_path, :method => :delete
 -else
     = link_to 'Login', '/auth/facebook/'
-        
