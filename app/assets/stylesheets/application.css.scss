@@ -23,8 +23,8 @@ ul.nav {
 ul.nav li {
   display: inline;
 }
-.logo {
-  // float: left;
+.logo.desktop {
+  display: none;
 }
 
 .header-container {
@@ -142,6 +142,16 @@ h1, h2, h3, h4, h5, h6 {
   
   .tagline {
     margin: 0;
+  }
+
+  .logo.mobile {
+    display: none;
+  }
+
+  .logo.desktop {
+    display: inline;
+    float: left;
+    margin-right: 15px;
   }
 }
 
