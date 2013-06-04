@@ -55,12 +55,13 @@ ul.nav li {
 
 .title-container {
   float: left;
-  margin: 15px 0 0 20px;
+  margin: 54px 0 0 20px;
 }
 
 .site-title {
   color: #222;
   margin: 0;
+  float: left;
 }
 
 .tagline {
@@ -69,7 +70,8 @@ ul.nav li {
   line-height: 20px;
   font-weight: normal;
 
-  margin: 0;
+  margin: 15px 5px 0;
+  float: left;
 
   color: #222;
 }
