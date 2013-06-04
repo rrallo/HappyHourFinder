@@ -13,6 +13,7 @@ Happy::Application.routes.draw do
   resources :home
 
 	root :to => redirect("/restaurants")
+
 	match '/auth/:provider/callback' => 'authentications#create'
   match '/restaurants/share_link/:id' => 'restaurants#share_link'
 
@@ -22,4 +23,6 @@ Happy::Application.routes.draw do
   post '/make_admin' => 'restaurants#make_admin'
   get '/demote_admin' => 'restaurants#demote_admin'
   post '/demote_admin' => 'restaurants#demote_admin'
+  match '/review_restaurant_requests' => 'restaurants#review_requests'
+  post '/approve_request' => 'restaurants#approve_request'
 end

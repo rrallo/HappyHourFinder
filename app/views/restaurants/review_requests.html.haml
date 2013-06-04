@@ -9,9 +9,6 @@
 				= image_tag(@list[r.name])
 				.restaurant-title-container 
 					%h1.restaurant-title= r.name
-					-if r.ratings.blank?
-						%p.rating No ratings yet!
-					-else
-						%p.rating #{r.average_rating} / 5.0
+					=button_to "Approve", action: "approve_request", form: {"id" => r.id}
 		- if i % 4 == 3
 			</div>

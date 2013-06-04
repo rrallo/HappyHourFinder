@@ -148,5 +148,34 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def review_requests
+    if params[:search]
+      @restaurants = Restaurant.search(params[:search])
+      params[:search] = nil
+    end
+
+    if @restaurants.nil? or @restaurants.empty?
+      @restaurants = Restaurant.all
+    end
+
+    @list = {}
+    @restaurants.each do |r|
+      yelp = connectYelp r
+      @list[r.name] = yelp["image_url"].gsub("ms\.jpg", "ls.jpg")
+    end
+  end
+
+  def approve_request
+    @restaurant = Restaurant.find(params[:form][:id])
+    @restaurant.is_approved = true
+
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to :back, notice: 'The restaurant has been approved.' }
+      else
+        format.html { redirect_to :back, alert: 'The restaurant has not been approved.' }
+      end
+    end
+  end
 
 end
