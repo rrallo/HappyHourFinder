@@ -31,6 +31,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(params[:id])
+    @restaurant.is_approved = true
 
     respond_to do |format|
       if @restaurant.save
@@ -69,21 +70,46 @@ class RestaurantsController < ApplicationController
 	end
 
   def share_link
-   @restaurant = Restaurant.find(params[:id])
-   user = FbGraph::User.me current_user.authentications.first.token
-   site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
-   begin
-     user.link!(link: site, message: 'Check out the happy hours of this restaurant! (testing cse 112 app)')
-     respond_to do |format|
-       format.html { redirect_to @restaurant, notice: "You have posted a link to #{site}" }
-       format.json { render json: @restaurant }
-     end
-   rescue
-     respond_to do |format|
-       format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
-       format.json { render json: @restaurant }
-     end
-   end
- end
+    @restaurant = Restaurant.find(params[:id])
+    user = FbGraph::User.me current_user.authentications.first.token
+    site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
+    begin
+      user.link!(link: site, message: 'Check out the happy hours of this restaurant! (testing cse 112 app)')
+      respond_to do |format|
+        format.html { redirect_to @restaurant, notice: "You have posted a link to #{site}" }
+        format.json { render json: @restaurant }
+      end
+    rescue
+      respond_to do |format|
+        format.html { redirect_to @restaurant, alert: "An error occurred when posting the link to #{site}" }
+        format.json { render json: @restaurant }
+      end
+    end
+  end
+
+  def new_request
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create_request
+    @restaurant = Restaurant.new
+    @restaurant.name        = params[:name]
+    @restaurant.location    = params[:location]
+    @restaurant.yelp_id     = params[:yelp_id]
+    @restaurant.photo_url   = params[:photo_url]
+    @restaurant.is_approved = false
+
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully added for review.' }
+        format.json { render json: @restaurant, status: :created, location: @restaurant }
+      else
+        format.html { redirect_to @restaurant, alert: 'Restaurant was not successfully added for review.' }
+        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 end

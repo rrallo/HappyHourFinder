@@ -1,0 +1,6 @@
+= form_tag '/restaurant/new_request', :url => { :action => "create_request" }, :html => {:class => "nifty_form"} do
+  = text_field_tag :name, "Name"
+  = text_field_tag :location, "Location"
+  = text_field_tag :yelp_id, "Yelp ID"
+  = text_field_tag :photo_url, "Photo URL"
+  = submit_tag "Submit"

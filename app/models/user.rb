@@ -8,14 +8,19 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :id, :name, :first_name, :last_name, :link, :username,
                   :location, :gender, :email, :timezone, :locale,
-                  :password, :password_confirmation, :remember_me
+                  :password, :password_confirmation, :remember_me,
+                  :is_admin
 
   has_many :ratings
   has_many :reviews
   has_many :authentications, :dependent => :delete_all
 
+  def admin?
+    is_admin
+  end
+
   def update_fields(auth)
-    self.uid           = auth['uid']
+    self.uid          = auth['uid']
     self.name         = auth['extra']['raw_info']['name']
     self.first_name   = auth['extra']['raw_info']['first_name']
     self.last_name    = auth['extra']['raw_info']['last_name']
