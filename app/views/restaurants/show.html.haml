@@ -15,36 +15,45 @@
         -else
           %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
         -if user_signed_in?
-          %p Happy Hour Rating:
-          = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
-            .control-group
-              .controls
-                %label.radio.inline
-                  = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
-                  1
-                %label.radio.inline
-                  = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
-                  2
-                %label.radio.inline
-                  = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
-                  3
-                %label.radio.inline
-                  = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
-                  4
-                %label.radio.inline
-                  = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
-                  5
-                = hidden_field_tag("restaurant_id", @restaurant.id)
-            %div.control-group
-              .controls
-                = f.submit(:Rate, :class => 'btn')
+          = content_tag(:a, "#{current_user.first_name}, rate this restaurant!", :href => "#ratingModal", :class => 'btn', :data => {:toggle => 'modal'})
+            
         -else
           = link_to "Login to rate this restaurant's happy hour.", '/auth/facebook/'
 
+        = content_tag('div', :class => 'hide fade modal', :id => 'ratingModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "ratingModalLabel", "aria-hidden" => "true") do
+          .modal-header
+            %h1#ratingModalLabel= "Happy Hour Rating:"
+          .modal-body
+            = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
+              .control-group
+                .controls
+                  %label.radio.inline
+                    = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
+                    1
+                  %label.radio.inline
+                    = radio_button_tag("rating", 2, current_user_rating == 2, :class => 'rating_button')
+                    2
+                  %label.radio.inline
+                    = radio_button_tag("rating", 3, current_user_rating == 3, :class => 'rating_button')
+                    3
+                  %label.radio.inline
+                    = radio_button_tag("rating", 4, current_user_rating == 4, :class => 'rating_button')
+                    4
+                  %label.radio.inline
+                    = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
+                    5
+                  = hidden_field_tag("restaurant_id", @restaurant.id)
+              %div.control-group
+                .controls
+                  = f.submit(:Rate, :class => 'btn')
+          .modal-footer
+            = content_tag(:button, 'Close', :data => {:dismiss => 'true'})
+
         -if user_signed_in?
-          = link_to "Share on Facebook",
-            {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id},
-            {:id => @restaurant.id}
+          %div
+            = link_to "Share on Facebook",
+              {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id},
+              {:id => @restaurant.id}
         %h2 Happy Hour Reviews
         -if @restaurant.reviews.blank?
           %p Be the first to review!
