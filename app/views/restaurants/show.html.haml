@@ -15,17 +15,15 @@
         -else
           %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
         -if user_signed_in?
-          = content_tag(:a, "#{current_user.first_name}, rate this restaurant!", :href => "#ratingModal", :class => 'btn', :data => {:toggle => 'modal'})
-            
+          = content_tag(:a, "Rate this restaurant!", :href => "#ratingModal", :class => 'btn', :data => {:toggle => 'modal'}) 
         -else
           = link_to "Login to rate this restaurant's happy hour.", '/auth/facebook/'
 
         = content_tag('div', :class => 'hide fade modal', :id => 'ratingModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "ratingModalLabel", "aria-hidden" => "true") do
           .modal-header
-            %h1#ratingModalLabel= "Happy Hour Rating:"
-          .modal-body
-            = form_for(rating_ballot, :html => { :class => 'rating_ballot' }) do |f|
-              .control-group
+            %h3#ratingModalLabel= "Rate #{@restaurant.name}"
+            = form_for(rating_ballot) do |f|
+              .modal-body
                 .controls
                   %label.radio.inline
                     = radio_button_tag("rating", 1, current_user_rating == 1, :class => 'rating_button')
@@ -43,17 +41,9 @@
                     = radio_button_tag("rating", 5, current_user_rating == 5, :class => 'rating_button')
                     5
                   = hidden_field_tag("restaurant_id", @restaurant.id)
-              %div.control-group
-                .controls
-                  = f.submit(:Rate, :class => 'btn')
-          .modal-footer
-            = content_tag(:button, 'Close', :data => {:dismiss => 'true'})
-
-        -if user_signed_in?
-          %div
-            = link_to "Share on Facebook",
-              {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id},
-              {:id => @restaurant.id}
+              .modal-footer
+                = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
+                = f.submit(:Rate, :class => 'btn btn-primary')
         %h2 Happy Hour Reviews
         -if @restaurant.reviews.blank?
           %p Be the first to review!
@@ -61,19 +51,36 @@
           %ul
             -@restaurant.reviews.each do |review|
               %li
+                #{review.user.name} - 
                 =review.review
+        -if user_signed_in?
+          = content_tag(:a, "Leave a review!", :href => "#reviewModal", :class => 'btn', :data => {:toggle => 'modal'})
+        -else 
+          %p= link_to "Login to leave a review", "/auth/facebook"
+
+        = content_tag('div', :class => 'hide fade modal', :id => 'reviewModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "reviewModalLabel", "aria-hidden" => "true") do
+          .modal-header
+            %h3#reviewModalLabel= "Review #{@restaurant.name}"
+          = form_for @review do |f|
+            .modal-body
+              .control-group
+                = f.label 'review', "Been here before? Leave a review!"
+                .controls
+                  = f.text_area('review', :class => 'span12', :rows => 4)
+                  = hidden_field_tag("restaurant_id", @restaurant.id)
+            .modal-footer
+              = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
+              = f.submit(:Review, :class => 'btn btn-primary')
         %h3 Yelp Reviews
         %ul
           -@yelp["reviews"].each do |review|
             %li
               #{review["excerpt"]}
         -if user_signed_in?
-          = form_for @review do |f|
-            .control-group
-              = f.label 'review', "Been here before? Leave a review!"
-              .controls
-                = f.text_area('review', :class => 'span12', :rows => 4)
-                = hidden_field_tag("restaurant_id", @restaurant.id)
-            = f.submit(:Review, :class => 'btn')
-        -else 
-          %p= link_to "Login to leave a review", "/auth/facebook"
+          %div
+            = link_to "Tell your friends about #{@restaurant.name}",
+              {:controller => :restaurants, :action => :share_link, :link => request.fullpath, :id => @restaurant.id, :class => 'btn'},
+              {:id => @restaurant.id}
+        
+          
+        

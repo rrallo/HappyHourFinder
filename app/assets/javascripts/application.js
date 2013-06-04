@@ -7,4 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-modal
+//= require bootstrap-transition
 //= require_tree .
