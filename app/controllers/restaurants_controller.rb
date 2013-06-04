@@ -178,4 +178,16 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def disapprove_restaurant
+    @restaurant = Restaurant.find(params[:form][:id])
+    @restaurant.is_approved = false
+
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to :back, notice: 'The restaurant has been put on list of restaurants to be reviewed.' }
+      else
+        format.html { redirect_to :back, alert: 'The restaurant status has not been changed due to internal error.' }
+      end
+    end
+  end
 end

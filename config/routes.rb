@@ -25,4 +25,5 @@ Happy::Application.routes.draw do
   post '/demote_admin' => 'restaurants#demote_admin'
   match '/review_restaurant_requests' => 'restaurants#review_requests'
   post '/approve_request' => 'restaurants#approve_request'
+  post '/disapprove_restaurant' => 'restaurants#disapprove_restaurant'
 end
