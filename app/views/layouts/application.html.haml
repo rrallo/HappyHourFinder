@@ -6,8 +6,8 @@
     %title= content_for?(:title) ? yield(:title) : "Myapp"
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    %link{:href=>'http://fonts.googleapis.com/css?family=Droid+Sans', :rel=>'stylesheet', :type=>'text/css'}
-    %link{:href=>'http://fonts.googleapis.com/css?family=Asap', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>'http://fonts.googleapis.com/css?family=Droid+Sans:400,700', :rel=>'stylesheet', :type=>'text/css'}
+    %link{:href=>'http://fonts.googleapis.com/css?family=Asap:400,700', :rel=>'stylesheet', :type=>'text/css'}
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -19,14 +19,17 @@
           .span12
             .header
               = content_tag(:a, :href => root_path) do
-                = image_tag("drinks.png", {:class => "logo"})
+                = image_tag("drinks.png", {:class => "logo desktop"})
                 .title-container
                   %h1.site-title BarRater
                   %h1.tagline find the best happy hours in SD
-              %nav.header-nav= render 'layouts/navigation'
-              .search
-                = form_tag restaurants_path, :method => 'get', :class => 'navbar-search pull-right' do
-                  = text_field_tag :search, params[:search], :id => 'search_query', :placeholder => 'search bars & restaurants'
+              .search-nav-container
+                %nav.header-nav= render 'layouts/navigation'
+                .search
+                  = form_tag restaurants_path, :method => 'get', :class => 'navbar-search' do
+                    = text_field_tag :search, params[:search], :id => 'search_query', :placeholder => 'search bars & restaurants'
+              = content_tag(:a, :href => root_path) do
+                = image_tag("drinks.png", {:class => "logo mobile"})
     .mock-bar
     #main{:role => "main"}
       .container-fluid

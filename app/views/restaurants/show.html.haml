@@ -15,10 +15,11 @@
           %p Be the first to rate this happy hour!
         -else
           %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
-        -if user_signed_in?
-          = content_tag(:a, "Rate this restaurant!", :href => "#ratingModal", :class => 'btn', :data => {:toggle => 'modal'}) 
-        -else
-          = link_to "Login to rate this restaurant's happy hour.", '/auth/facebook/'
+        %p.button-container
+          -if user_signed_in?
+            = content_tag(:a, "Rate this restaurant!", :href => "#ratingModal", :class => 'btn', :data => {:toggle => 'modal'}) 
+          -else
+            = link_to "Login to rate this restaurant's happy hour.", '/auth/facebook/'
 
         -if user_signed_in?
           = content_tag('div', :class => 'hide fade modal', :id => 'ratingModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "ratingModalLabel", "aria-hidden" => "true") do
@@ -55,10 +56,11 @@
               %li
                 #{review.user.name} - 
                 =review.review
-        -if user_signed_in?
-          = content_tag(:a, "Leave a review!", :href => "#reviewModal", :class => 'btn', :data => {:toggle => 'modal'})
-        -else 
-          %p= link_to "Login to leave a review", "/auth/facebook"
+        %p.button-container
+          -if user_signed_in?
+            = content_tag(:a, "Leave a review!", :href => "#reviewModal", :class => 'btn', :data => {:toggle => 'modal'})
+          -else 
+            %p= link_to "Login to leave a review", "/auth/facebook"
 
         = content_tag('div', :class => 'hide fade modal', :id => 'reviewModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "reviewModalLabel", "aria-hidden" => "true") do
           .modal-header
