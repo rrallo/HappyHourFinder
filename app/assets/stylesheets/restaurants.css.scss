@@ -83,12 +83,13 @@
 .content {
 	background: #fff;
 	padding: 20px;
-}
 
-.content.with-header-img {
 	-webkit-box-shadow: 0 0 2px rgba(0,0,0, .5);
 	-moz-box-shadow: 0 0 2px rgba(0,0,0, .5);
 	box-shadow: 0 0 2px rgba(0,0,0, .5);
+}
+
+.content.with-header-img {
 	border-radius: 3px;
 
 	margin: -100px 0 50px;
