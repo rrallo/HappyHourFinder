@@ -1,5 +1,10 @@
 = link_to "Home", root_path
-= link_to "Add", root_path
+-if user_signed_in?
+    -if current_user.admin?
+        = link_to "Review", new_restaurant_path
+    -else
+        = link_to "Add", '/restaurant/new_request'
+
 -if user_signed_in?
     = link_to "Logout #{current_user.name}", destroy_user_session_path, :method => :delete
 -else

@@ -15,5 +15,8 @@ Happy::Application.routes.draw do
 	root :to => redirect("/restaurants")
 	match '/auth/:provider/callback' => 'authentications#create'
   match '/restaurants/share_link/:id' => 'restaurants#share_link'
+  
+  get '/restaurant/new_request' => 'restaurants#new_request'
+  post '/restaurant/new_request' => 'restaurants#create_request'
 
 end
