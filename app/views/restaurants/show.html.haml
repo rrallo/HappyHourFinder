@@ -6,6 +6,7 @@
   .row-fluid
     .span8.offset2
       %div{:class => !(@header_img).blank? ? "content with-header-img" : "content"}
+        = render 'layouts/messages'
         %h1= @restaurant.name
         %p= @yelp["location"]["display_address"].join(",")
         %h2 Ratings

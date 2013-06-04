@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
         format.html { redirect_to restaurant_path(@restaurant), :notice => "Your review has been saved" }
         format.js
       else
-        format.html { redirect_to restaurant_path(@restaurant), :alert => "Your rating has not been saved" }
+        format.html { redirect_to restaurant_path(@restaurant), :alert => "Your review has not been saved" }
         format.js
       end
     end

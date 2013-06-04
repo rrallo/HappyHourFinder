@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
         format.html { redirect_to restaurant_path(@restaurant), :notice => "Your rating has been saved" }
         format.js
       else
-        format.html { redirect_to restaurant_path(@restaurant), :alert => "Your rating has not been saved" }
+        format.html { redirect_to restaurant_path(@restaurant), :alert => "Sorry, your rating was not saved" }
         format.js
       end
     end
@@ -24,10 +24,10 @@ class RatingsController < ApplicationController
     @rating = current_user.ratings.find_by_restaurant_id(@restaurant.id)
     respond_to do |format|
       if @rating.update_attributes(rating: params[:rating])
-        format.html { redirect_to restaurant_path(@restaurant), :notice => "Your rating has been updated" }
+        format.html { redirect_to restaurant_path(@restaurant), :notice => "Your rating has been updated"}
         format.js
       else
-        format.html { redirect_to restaurant_path(@restaurant), :alert => "Your rating has not been updated" }
+        format.html { redirect_to restaurant_path(@restaurant), :alert => "Sorry, your rating was not updated"}
         format.js
       end
     end
