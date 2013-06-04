@@ -11,7 +11,7 @@
         %p= @yelp["location"]["display_address"].join(",")
         %h2 Ratings
         %p Yelp Rating: #{@yelp["rating"]} / 5.0
-        -if Rating.find_by_id(@restaurant.id).nil?
+        -if @restaurant.ratings.blank?
           %p Be the first to rate this happy hour!
         -else
           %p Happy Hour Rating: #{@restaurant.average_rating} / 5.0
