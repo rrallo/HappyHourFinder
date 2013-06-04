@@ -29,9 +29,9 @@
 
 .restaurant-title-container {
 	background: rgba(0,0,0, .55);
-	padding: 10px;
+	padding: 10px 3%;
 
-	width: 100%;
+	width: 94%;
 
 	position: absolute;
 	bottom: 0;
@@ -59,7 +59,7 @@
 
 .restaurant-title {
 	margin: 0;
-	font-size: 18px;
+	font-size: 17px;
 	line-height: 20px;
 	
 	color: #f0f0f0;
@@ -67,7 +67,7 @@
 }
 
 .header-img {
-	margin: 0 -16px;
+	margin: 0 -20px;
 	-webkit-box-shadow: 0 0 2px rgb(0,0,0);
 	-moz-box-shadow: 0 0 2px rgb(0,0,0);
 	box-shadow: 0 0 2px rgb(0,0,0);
@@ -76,18 +76,20 @@
 		position: relative;
 		top: -50%;
 		z-index: -10;
+		width: 100%;
 	}
 }
 
 .content {
 	background: #fff;
 	padding: 20px;
-}
 
-.content.with-header-img {
 	-webkit-box-shadow: 0 0 2px rgba(0,0,0, .5);
 	-moz-box-shadow: 0 0 2px rgba(0,0,0, .5);
 	box-shadow: 0 0 2px rgba(0,0,0, .5);
+}
+
+.content.with-header-img {
 	border-radius: 3px;
 
 	margin: -100px 0 50px;
@@ -107,4 +109,8 @@
 	li {
 		margin-top: 5px;
 	}
+}
+
+.button-container {
+	margin: 5px 0 20px;
 }
