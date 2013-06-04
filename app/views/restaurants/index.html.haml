@@ -13,6 +13,7 @@
 						%p.rating No ratings yet!
 					-else
 						%p.rating #{r.average_rating} / 5.0
-					=button_to "Disapprove", action: "disapprove_restaurant", form: {"id" => r.id}
+					-if user_signed_in? and current_user.admin?
+						=button_to "Disapprove", action: "disapprove_restaurant", form: {"id" => r.id}
 		- if i % 4 == 3
 			</div>
