@@ -1,6 +1,10 @@
 .container 
-  .row-fluid
-    .span8.offset2
-      %h1 New restaurant
-      = render 'form'
-      = link_to 'Back', restaurants_path
+	.row-fluid
+		.span8.offset2
+			%h1 New restaurant
+			-if user_signed_in? 
+				= render 'form'
+				= link_to 'Back', restaurants_path
+			-else
+				:javascript
+					window.location.href="/restaurants"

@@ -1,14 +1,18 @@
 = render 'layouts/messages'
-.restaurant-grid
-	-@restaurants.each_with_index do |r, i|
-		- next if r.approved?
-		- if i % 4 == 0
-			<div class="row-fluid">
-		.restaurant-tile.span3
-			%a{:href=>restaurant_path(r)}
-				= image_tag(@list[r.name])
-				.restaurant-title-container 
-					%h1.restaurant-title= r.name
-					=button_to "Approve", action: "approve_request", form: {"id" => r.id}
-		- if i % 4 == 3
-			</div>
+-if user_signed_in? and current_user.admin?
+	.restaurant-grid
+		-@restaurants.each_with_index do |r, i|
+			- next if r.approved?
+			- if i % 4 == 0
+				<div class="row-fluid">
+			.restaurant-tile.span3
+				%a{:href=>restaurant_path(r)}
+					= image_tag(@list[r.name])
+					.restaurant-title-container 
+						%h1.restaurant-title= r.name
+						=button_to "Approve", action: "approve_request", form: {"id" => r.id}
+			- if i % 4 == 3
+				</div>
+-else
+	:javascript
+		window.location.href="/restaurants"
