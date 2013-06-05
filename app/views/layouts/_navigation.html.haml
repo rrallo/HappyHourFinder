@@ -4,6 +4,8 @@
 -else
     = link_to 'Login', '/auth/facebook/'
 
+= link_to "I'm Feeling Thirsty", '/random'
+
 -if user_signed_in?
     -if current_user.admin?
         = link_to "Review", '/review_restaurant_requests'

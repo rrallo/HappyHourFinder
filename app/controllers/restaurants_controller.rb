@@ -52,6 +52,15 @@ class RestaurantsController < ApplicationController
     #puts y @restaurant
   end
 
+  def random
+    @restaurant = Restaurant.offset(rand(Restaurant.count)).first
+    @yelp = connectYelp @restaurant
+    @review = Review.new
+    @header_img = @restaurant.photo_url
+
+    redirect_to @restaurant
+  end
+
   def connectYelp restaurant
     consumer_key = 'ln-FI2hVPWjx4xFhWM5fGw'
     consumer_secret = 'QVauHsbQnYGdNoMMf5tRyw3doFk'
