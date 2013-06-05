@@ -178,6 +178,19 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def delete_request
+    @restaurant = Restaurant.find(params[:form][:id])
+    @restaurant.destroy
+
+    respond_to do |format|
+      if @restaurant.destroyed?
+        format.html { redirect_to :back, notice: 'The restaurant has been deleted from the review list.' }
+      else
+        format.html { redirect_to :back, alert: 'The restaurant has not been deleted from the review list due to an internal error.' }
+      end
+    end
+  end
+
   def disapprove_restaurant
     @restaurant = Restaurant.find(params[:form][:id])
     @restaurant.is_approved = false
