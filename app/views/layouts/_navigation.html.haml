@@ -6,8 +6,7 @@
     -else
         = link_to "Add", '/new_restaurant_request'
         = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
-            = text_field_tag :passphrase, "Passphrase"
-            = submit_tag "Request to be admin"
+            = text_field_tag :passphrase, "Admin password"
 
 -if user_signed_in?
     = link_to "Logout #{current_user.name}", destroy_user_session_path, :method => :delete
