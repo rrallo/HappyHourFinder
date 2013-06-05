@@ -74,7 +74,7 @@ class RestaurantsController < ApplicationController
     user = FbGraph::User.me current_user.authentications.first.token
     site = "https://shielded-hollows-4431.herokuapp.com#{params[:link]}"
     begin
-      user.link!(link: site, message: 'Check out the happy hours of #{@restaurant.name}!')
+      user.link!(link: site, message: "Check out the happy hours of #{@restaurant.name}!")
       respond_to do |format|
         format.html { redirect_to @restaurant, notice: "You have posted a link to #{site} on Facebook" }
         format.json { render json: @restaurant }
