@@ -54,8 +54,13 @@
           %ul.happy-review-list
             -@restaurant.reviews.each do |review|
               %li
-                #{review.user.name} - 
-                =review.review
+                .user_review
+                  -if not review.created_at.nil?
+                    %p.review_header
+                      %span.review_name #{review.user.name}  
+                      %span.review_time #{review.created_at.localtime.to_formatted_s(:long)}
+                  %p.review_body  
+                    =review.review
         %p.button-container
           -if user_signed_in?
             = content_tag(:a, "Leave a review!", :href => "#reviewModal", :class => 'btn', :data => {:toggle => 'modal'})
