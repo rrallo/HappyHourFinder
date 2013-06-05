@@ -234,7 +234,7 @@ class RestaurantsController < ApplicationController
 
       respond_to do |format|
         if @restaurant.save
-          format.html { redirect_to @restaurant, notice: "#{@restaurant.tags.inspect} #{@restaurant.tags.find_by_tag(:first, params[:tag]).nil?} Tag was successfully created and associated to the restaurant." }
+          format.html { redirect_to @restaurant, notice: 'Tag was successfully created and associated to the restaurant.' }
         else
           format.html { redirect_to @restaurant, alert: 'Tag was not successfully created and associated to the restaurant.' }
         end
