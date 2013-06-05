@@ -6,8 +6,14 @@ class RestaurantsController < ApplicationController
   def index
     if params[:search]
       @restaurants = Restaurant.search(params[:search])
-      params[:search] = nil
+    elsif params[:search_tag]
+      @restaurants = Array.new
+      Restaurant.all.each do |restaurant|
+        @restaurants << restaurant unless restaurant.tags.find_by_tag(params[:search_tag].downcase).blank?
+      end
     end
+    params[:search] = nil
+    params[:search_tag] = nil
 
     if @restaurants.nil? or @restaurants.empty?
       @restaurants = Restaurant.all
@@ -221,9 +227,10 @@ class RestaurantsController < ApplicationController
         format.html { redirect_to @restaurant, alert: 'Tag already exists for this restaurant.' }
       end
     else
-      tag = Tag.find_or_create_by_tag(params[:tag])
-      tag.save
+      tag = Tag.new
+      tag.tag = params[:tag]
       @restaurant.tags << tag
+      tag.save
 
       respond_to do |format|
         if @restaurant.save

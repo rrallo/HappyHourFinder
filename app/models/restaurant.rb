@@ -9,14 +9,13 @@ class Restaurant < ActiveRecord::Base
   def approved?
     is_approved
   end
-  
+
   def self.search(search)
     find(:all,
-         :conditions => ['lower(name) LIKE ?',#' OR category LIKE ?',
-                         #"%#{search}%",
+         :conditions => ['lower(name) LIKE ?',
                          "%#{search}%".downcase])
   end
-
+  
   def average_rating
     @rating = 0
     self.ratings.each do | rating |
