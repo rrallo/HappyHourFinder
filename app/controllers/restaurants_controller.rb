@@ -212,4 +212,26 @@ class RestaurantsController < ApplicationController
       end
     end
   end
+
+  def create_tag
+    @restaurant = Restaurant.find(params[:id])
+
+    if not @restaurant.tags.find_by_tag(params[:tag]).blank?
+      respond_to do |format|
+        format.html { redirect_to @restaurant, alert: 'Tag already exists for this restaurant.' }
+      end
+    else
+      tag = Tag.find_or_create_by_tag(params[:tag])
+      tag.save
+      @restaurant.tags << tag
+
+      respond_to do |format|
+        if @restaurant.save
+          format.html { redirect_to @restaurant, notice: "#{@restaurant.tags.inspect} #{@restaurant.tags.find_by_tag(:first, params[:tag]).nil?} Tag was successfully created and associated to the restaurant." }
+        else
+          format.html { redirect_to @restaurant, alert: 'Tag was not successfully created and associated to the restaurant.' }
+        end
+      end
+    end
+  end
 end

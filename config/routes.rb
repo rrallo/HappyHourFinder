@@ -1,4 +1,6 @@
 Happy::Application.routes.draw do
+  resources :tags
+
   ActiveSupport::Deprecation.silence do
     devise_for :users do
       get '/users/sign_out' => 'devise/sessions#destroy'
@@ -30,4 +32,5 @@ Happy::Application.routes.draw do
   post '/approve_request' => 'restaurants#approve_request'
   post '/delete_request' => 'restaurants#delete_request'
   post '/disapprove_restaurant' => 'restaurants#disapprove_restaurant'
+  post '/create_tag' => 'restaurants#create_tag'
 end

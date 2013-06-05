@@ -2,6 +2,7 @@ class Restaurant < ActiveRecord::Base
   validates :name, :presence => true
   has_many  :ratings #, :categories
   has_many  :reviews
+  has_many  :tags
 
   attr_accessible :id, :name, :location, :yelp_id, :photo_url, :is_approved
 

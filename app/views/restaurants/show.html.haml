@@ -85,6 +85,16 @@
           -@yelp["reviews"].each do |review|
             %li
               #{review["excerpt"]}
+        %h3 Tags
+        %ul.tag-review-list
+          -@restaurant.tags.each do |tag|
+            %li
+              #{tag[:tag]}
+        -if user_signed_in?
+          %div
+            = form_tag '/create_tag', url: { controller: 'restaurants', action: 'create_tag' }, html: {:class => 'nifty_form'} do
+              = text_field_tag :tag, nil, placeholder: 'Enter a tag'
+              = hidden_field_tag :id, @restaurant.id
         -if user_signed_in?
           %div
             = link_to "Tell your friends about #{@restaurant.name}",
