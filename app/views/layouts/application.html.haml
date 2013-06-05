@@ -27,10 +27,7 @@
                 %nav.header-nav= render 'layouts/navigation'
                 .search
                   = form_tag restaurants_path, :method => 'get', :class => 'navbar-search' do
-                    = text_field_tag :search, params[:search], :id => 'search_query', :placeholder => 'search by name'
-                  = form_tag restaurants_path, :method => 'get', :class => 'navbar-search' do
-                    = text_field_tag :search_tag, params[:search_tag], :id => 'search_query_by_tag', :placeholder => 'search by tag'
-              = content_tag(:a, :href => root_path) do
+                    = text_field_tag :search, params[:search], :id => 'search_query', :placeholder => 'search by name or tag'
                 = image_tag("drinks.png", {:class => "logo mobile"})
     .mock-bar
     #main{:role => "main"}

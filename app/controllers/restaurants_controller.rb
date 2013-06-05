@@ -5,16 +5,26 @@ require 'fb_graph'
 class RestaurantsController < ApplicationController
   def index
     if params[:search]
-      @restaurants = Restaurant.search(params[:search])
-    elsif params[:search_tag]
-      @restaurants = Array.new
-      Restaurant.all.each do |restaurant|
-        @restaurants << restaurant unless restaurant.tags.find_by_tag(params[:search_tag].downcase).blank?
-      end
-    end
-    params[:search] = nil
-    params[:search_tag] = nil
+      # search by name
+      @restaurants = Restaurant.search params[:search]
+      @restaurants = [] if @restaurants.nil?
 
+      # search by tag
+      Restaurant.all.each do |r|
+        t = r.tags.find_by_tag params[:search].downcase
+        @restaurants << r unless t.blank?
+      end
+
+      # remove duplicates
+      @restaurants = @restaurants.uniq do |r|
+        r.id
+      end
+
+      # clear params
+      params[:search] = nil
+    end
+
+    # default to all restaurants if search led to no results
     if @restaurants.nil? or @restaurants.empty?
       @restaurants = Restaurant.all
     end
@@ -22,7 +32,7 @@ class RestaurantsController < ApplicationController
     @list = {}
     @restaurants.each do |r|
       yelp = connectYelp r
-      @list[r.name] = yelp["image_url"].gsub("ms\.jpg", "ls.jpg")
+      @list[r.name] = yelp["image_url"].gsub "ms\.jpg", "ls.jpg"
     end
   end
 
