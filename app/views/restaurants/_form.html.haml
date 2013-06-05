@@ -1,6 +1,6 @@
 = form_tag '/new_restaurant_request', :url => { :action => "create_request" }, :html => {:class => "nifty_form"} do
-  = text_field_tag :name, "Name"
-  = text_field_tag :location, "Location"
-  = text_field_tag :yelp_id, "Yelp ID"
-  = text_field_tag :photo_url, "Photo URL"
+  = text_field_tag :name, nil, :placeholder => "Name"
+  = text_field_tag :location, nil, :placeholder => "Location"
+  = text_field_tag :yelp_id, nil, :placeholder => "Yelp ID"
+  = text_field_tag :photo_url, nil, :placeholder => "Photo URL"
   = submit_tag "Submit"
