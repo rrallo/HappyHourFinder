@@ -1,6 +1,22 @@
-= form_tag '/new_restaurant_request', :url => { :action => "create_request" }, :html => {:class => "nifty_form"} do
-  = text_field_tag :name, nil, :placeholder => "Name"
-  = text_field_tag :location, nil, :placeholder => "Location"
-  = text_field_tag :yelp_id, nil, :placeholder => "Yelp ID"
-  = text_field_tag :photo_url, nil, :placeholder => "Photo URL"
-  = submit_tag "Submit"
+= form_tag '/new_restaurant_request', :url => { :action => "create_request" }, :class => 'form-horizontal' do
+	.control-group
+		%label.control-label Email
+		.controls
+			= text_field_tag :name, nil, :placeholder => "Name"
+	.control-group
+		%label.control-label Location
+		.controls
+			= text_field_tag :location, nil, :placeholder => "Location"
+	.control-group
+		%label.control-label Yelp ID
+		.controls
+			= text_field_tag :yelp_id, nil, :placeholder => "Yelp ID"
+	.control-group
+		%label.control-label 
+			Photo URL
+			%small (optional)
+		.controls
+			= text_field_tag :photo_url, nil, :placeholder => "Photo URL"
+	.form-actions
+		= submit_tag "Submit", :class => 'btn btn-primary'
+		= link_to 'Cancel', restaurants_path, :class => 'btn'
