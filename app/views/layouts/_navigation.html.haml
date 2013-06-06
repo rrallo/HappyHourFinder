@@ -19,12 +19,13 @@
         = content_tag('div', :class => 'hide fade modal', :id => 'adminLoginModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "adminLoginModalLabel", "aria-hidden" => "true") do
             .modal-header
                 %h1#adminLoginModalLabel Admin Pages
-            .modal-body
-                = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
+            = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
+                .modal-body
+                    %label Enter your admin password to login to as an admin.
                     = text_field_tag :passphrase, nil, :placeholder => "Admin password"
-            .modal-footer
-                = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
-        
+                .modal-footer
+                    = submit_tag :Login, :class => 'btn btn-primary'
+                    = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
 -if user_signed_in?
     = link_to "Logout", destroy_user_session_path, :method => :delete
 -else

@@ -133,6 +133,10 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
+  .modal {
+    text-align: left;
+  }
+
   .title-container {
     float: left;
     text-align:left;
@@ -170,9 +174,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 960px) {
-  .header {
-    text-align: left;
-  }
 
   .site-title {
     float: left;
