@@ -23,8 +23,8 @@
                 .title-container
                   %h1.site-title BarRater
                   %h1.tagline find the best happy hours in SD
+              %nav.header-nav= render 'layouts/navigation'
               .search-nav-container
-                %nav.header-nav= render 'layouts/navigation'
                 .search
                   = form_tag restaurants_path, :method => 'get', :class => 'navbar-search' do
                     = text_field_tag :search, params[:search], :id => 'search_query', :placeholder => 'search by name or tag'

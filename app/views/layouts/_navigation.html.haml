@@ -1,16 +1,31 @@
 = link_to "Home", root_path
--if user_signed_in?
-    = link_to "Logout #{current_user.name}", destroy_user_session_path, :method => :delete
--else
-    = link_to 'Login', '/auth/facebook/'
 
 = link_to "I'm Feeling Thirsty", '/random'
 
 -if user_signed_in?
     -if current_user.admin?
-        = link_to "Review", '/review_restaurant_requests'
-        = link_to "Demote", '/demote_admin'
+        = content_tag(:a, "Admin", :href => "#adminNavModal", :data => {:toggle => 'modal'}) 
+        = content_tag('div', :class => 'hide fade modal', :id => 'adminNavModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "adminModalLabel", "aria-hidden" => "true") do
+            .modal-header
+                %h1#adminModalLabel Admin Actions
+            .modal-body
+                = link_to "Review", '/review_restaurant_requests'
+                = link_to "Demote", '/demote_admin'
+            .modal-footer
+                = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
     -else
         = link_to "Add", '/new_restaurant_request'
-        = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
-            = text_field_tag :passphrase, nil, :placeholder => "Admin password"
+        = content_tag(:a, "Admin", :href => "#adminLoginModal", :data => {:toggle => 'modal'}) 
+        = content_tag('div', :class => 'hide fade modal', :id => 'adminLoginModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "adminLoginModalLabel", "aria-hidden" => "true") do
+            .modal-header
+                %h1#adminLoginModalLabel Admin Pages
+            .modal-body
+                = form_tag '/make_admin', :url => { controller: "restaurants", action: "make_admin" }, :html => {:class => "nifty_form"} do
+                    = text_field_tag :passphrase, nil, :placeholder => "Admin password"
+            .modal-footer
+                = content_tag(:button, 'Close', :class => 'btn', :data => {:dismiss => 'modal'}, "aria-hidden" => 'true')  
+        
+-if user_signed_in?
+    = link_to "Logout", destroy_user_session_path, :method => :delete
+-else
+    = link_to 'Login', '/auth/facebook/'

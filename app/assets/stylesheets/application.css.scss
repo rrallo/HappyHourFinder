@@ -81,14 +81,13 @@ ul.nav li {
 }
 
 .header-nav {
-  margin: 20px 0 0;
+  padding: 20px 0 0;
 
   a {
     color: #222;
+    display: block;
 
-    border-left: 1px solid #b8bb97;
-    padding-left: 10px;
-    padding-right: 5px;
+    padding: 5px 0;
 
     -webkit-transition: color .15s;
     -moz-transition: color .15s;
@@ -110,6 +109,10 @@ ul.nav li {
   }
 }
 
+#adminModal {
+  text-align: left;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Droid Sans', 'Helvetica', 'Aria', sans-serif !important;
 }
@@ -117,6 +120,17 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 768px) { 
   .header {
     text-align:center;
+  }
+
+  .header-nav {
+    padding-top: 23px;
+    text-align: right;
+
+    a {
+      display: inline;
+      border-left: 1px solid #b8bb97;
+      padding: 2px 3px 2px 5px;
+    }
   }
 
   .title-container {
@@ -132,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   .search-nav-container {
     width: auto;
     float: right;
-    margin-top: 8px;
+    margin-top: 3px;
     text-align: right;
     
     .search {
@@ -156,6 +170,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (min-width: 960px) {
+  .header {
+    text-align: left;
+  }
+
   .site-title {
     float: left;
   }
