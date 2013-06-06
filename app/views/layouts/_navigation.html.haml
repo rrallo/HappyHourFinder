@@ -4,6 +4,7 @@
 
 -if user_signed_in?
     -if current_user.admin?
+        = link_to "Add", '/new_restaurant_request'
         = content_tag(:a, "Admin", :href => "#adminNavModal", :data => {:toggle => 'modal'}) 
         = content_tag('div', :class => 'hide fade modal', :id => 'adminNavModal', :role => 'dialog', :tabindex => -1, "aria-labelledBy" => "adminModalLabel", "aria-hidden" => "true") do
             .modal-header
