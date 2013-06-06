@@ -144,3 +144,10 @@
 		font-size: 18px;
 	}
 }
+
+.restaurant-review-btn-container {
+	margin-left: 0 !important;
+	.button_to, div {
+		margin: 0;
+	}
+}

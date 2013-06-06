@@ -1,19 +1,28 @@
 = render 'layouts/messages'
 -if user_signed_in? and current_user.admin?
 	.restaurant-grid
+		- count = 0
 		-@restaurants.each_with_index do |r, i|
 			- next if r.approved?
-			- if i % 4 == 0
+			- if count % 4 == 0
 				<div class="row-fluid">
-			.restaurant-tile.span3
-				%a{:href=>restaurant_path(r)}
-					= image_tag(@list[r.name])
-					.restaurant-title-container 
-						%h1.restaurant-title= r.name
-						=button_to "Approve", action: "approve_request", form: {"id" => r.id}, :class => 'btn'
-						=button_to "Delete", action: "delete_request", form: {"id" => r.id}, :class => 'btn'
-			- if i % 4 == 3
+			.span3
+				.restaurant-tile
+					%a{:href=>restaurant_path(r)}
+						= image_tag(@list[r.name])
+						.restaurant-title-container 
+							%h1.restaurant-title= r.name
+							-if r.ratings.blank?
+								%p.rating No ratings yet!
+							-else
+								%p.rating #{r.average_rating} / 5.0
+				.restaurant-review-btn-container.pull-left.span6
+					=button_to "Approve", {action: "approve_request", form: {"id" => r.id}}, :class => 'btn span12 btn-primary'
+				.restaurant-review-btn-container.pull-right.span6
+					=button_to "Delete", {action: "delete_request", form: {"id" => r.id}}, :class => 'btn span12 '
+			- if count % 4 == 3
 				</div>
+			- count = count + 1
 -else
 	:javascript
 		window.location.href="/restaurants"
