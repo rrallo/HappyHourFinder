@@ -129,3 +129,18 @@
 .review_name {
   font-weight: bold;
 }
+
+.dismiss-btn-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	.btn {
+		background: transparent;
+		background-image: none;
+		color: #fff;
+		border: none;
+		text-shadow: 1px 1px 1px #000;
+		font-size: 18px;
+	}
+}

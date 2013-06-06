@@ -10,8 +10,8 @@
 					= image_tag(@list[r.name])
 					.restaurant-title-container 
 						%h1.restaurant-title= r.name
-						=button_to "Approve", action: "approve_request", form: {"id" => r.id}
-						=button_to "Delete", action: "delete_request", form: {"id" => r.id}
+						=button_to "Approve", action: "approve_request", form: {"id" => r.id}, :class => 'btn'
+						=button_to "Delete", action: "delete_request", form: {"id" => r.id}, :class => 'btn'
 			- if i % 4 == 3
 				</div>
 -else
